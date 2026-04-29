@@ -1,0 +1,31 @@
+[
+	{
+		"userID": "MPO06",
+		"password": "Password12",
+		"retailerName": "City Store",
+		"productQty": "5",
+		"productName": "Electrolyte",
+		"addDate": "30",
+		"changeDate": "21",
+		"morning_orderDeliveryDay": "3",
+		"evening_orderDeliveryDay": "4",
+		"endPoint":"EndPoint",
+		"morning_startTime_Hour": "08",
+		"morning_startTime_Minute": "00",
+		"morning_endTime_Hour": "02",
+		"morning_endTime_Minute": "00",
+		"evening_startTime_Hour": "02",
+		"evening_startTime_Minute": "30",
+		"evening_endTime_Hour": "08",
+		"evening_endTime_Minute": "00",
+		"morning_endTime": "2",
+		"morning_startPoint": "Rampura Submarket 1",
+		"morning_endPoint": "Rampura Submarket 2",
+		"evening_tourType": "HD",
+		"evening_workType": "CW",
+		"evening_startTime": "3:00 PM",
+		"evening_endTime": "9:00 PM",
+		"evening_startPoint": "Rampura Submarket 3",
+		"evening_endPoint": "Bashundhara Sub Market 2"
+	}
+]
