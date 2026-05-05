@@ -55,16 +55,18 @@ public class AndroidBase extends utils.AppiumUtils {
 
         // Use UDID from adb devices
         options.setUdid(prop.getProperty("udid"));
-
         options.setPlatformName("Android");
-
         options.setAutomationName("UiAutomator2");
-
+        
         options.setApp(System.getProperty("user.dir")
                 + "\\src\\test\\java\\resources\\DSAS_UATRelease_v3_2_0_enamul_feature_money_collection_petty_cash.apk");
 
+        /*
+        options.setAppPackage("com.sslwireless.dsas");
+        options.setAppActivity("com.sslwireless.dsas.ui.splash_screen.SplashScreen"); // 👈 Launcher activity
+        options.setNoReset(true); // 👈 Keeps login session → auto skips to Dashboard
+        */
         options.setCapability("autoGrantPermissions", true);
-
         options.setNewCommandTimeout(Duration.ofSeconds(300));
 
         // Driver init

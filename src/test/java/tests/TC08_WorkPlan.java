@@ -53,23 +53,23 @@ public class TC08_WorkPlan extends AndroidBase {
 			workPlanPage.enterStartPointMorning();
 			workPlanPage.enterStartPointEvening();
 			workPlanPage.clickStartTimeMorning();
-			Thread.sleep(2000);
+			Thread.sleep(1000);
 			workPlanPage.timePickerStartMorning(input.get("morning_startTime_Hour"),
 					input.get("morning_startTime_Minute"));
 
 			workPlanPage.clickStartTimeEvening();
-			Thread.sleep(2000);
+			Thread.sleep(1000);
 			workPlanPage.timePickerStartEvening(input.get("evening_startTime_Hour"),
 					input.get("evening_startTime_Minute"));
 
 			workPlanPage.clickEndTimeMorning();
-			Thread.sleep(2000);
+			Thread.sleep(1000);
 			workPlanPage.timePickerEndMorning(input.get("morning_endTime_Hour"), input.get("morning_endTime_Minute"));
-			Thread.sleep(2000);
+			Thread.sleep(1000);
 			workPlanPage.clickEndTimeEvening();
 
 			workPlanPage.timePickerEndEvening(input.get("morning_endTime_Hour"), input.get("morning_endTime_Minute"));
-			Thread.sleep(2000);
+			
 			if (i == 7) {
 				workPlanPage.clickSubmit();
 				workPlanPage.clickOkOnFirstPopup();

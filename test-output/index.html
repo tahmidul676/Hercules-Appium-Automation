@@ -25,7 +25,7 @@
       <span class="top-banner-title-font">Test results</span>
       <button id="button" class="button">Switch Retro Theme</button> <!-- button -->
       <br/>
-      <span class="top-banner-font-1">1 suite, 1 failed test</span>
+      <span class="top-banner-font-1">1 suite</span>
     </div> <!-- top-banner-root -->
     <div class="navigator-root">
       <div class="navigator-suite-header">
@@ -39,7 +39,7 @@
         <div class="rounded-window">
           <div class="suite-header light-rounded-window-top">
             <a href="#" panel-name="suite-Default_suite" class="navigator-link">
-              <span class="suite-name border-failed">Default suite</span>
+              <span class="suite-name border-passed">Default suite</span>
             </a> <!-- navigator-link -->
           </div> <!-- suite-header light-rounded-window-top -->
           <div class="navigator-suite-content">
@@ -50,7 +50,7 @@
               <ul>
                 <li>
                   <a href="#" panel-name="test-xml-Default_suite" class="navigator-link ">
-                    <span>C:\Users\tahamidul.haque\AppData\Local\Temp\testng-eclipse-1288997977\testng-customsuite.xml</span>
+                    <span>C:\Users\tahamidul.haque\AppData\Local\Temp\testng-eclipse--904608680\testng-customsuite.xml</span>
                   </a> <!-- navigator-link  -->
                 </li>
                 <li>
@@ -92,21 +92,21 @@
               <div class="suite-section-content">
                 <ul>
                   <li>
-                    <span class="method-stats">1 method, 1 failed,   </span>
+                    <span class="method-stats">1 method,   1 passed</span>
                   </li>
                   <li>
-                    <span class="method-list-title failed">Failed methods</span>
-                    <span class="show-or-hide-methods failed">
-                      <a href="#" panel-name="suite-Default_suite" class="hide-methods failed suite-Default_suite"> (hide)</a> <!-- hide-methods failed suite-Default_suite -->
-                      <a href="#" panel-name="suite-Default_suite" class="show-methods failed suite-Default_suite"> (show)</a> <!-- show-methods failed suite-Default_suite -->
+                    <span class="method-list-title passed">Passed methods</span>
+                    <span class="show-or-hide-methods passed">
+                      <a href="#" panel-name="suite-Default_suite" class="hide-methods passed suite-Default_suite"> (hide)</a> <!-- hide-methods passed suite-Default_suite -->
+                      <a href="#" panel-name="suite-Default_suite" class="show-methods passed suite-Default_suite"> (show)</a> <!-- show-methods passed suite-Default_suite -->
                     </span>
-                    <div class="method-list-content failed suite-Default_suite">
+                    <div class="method-list-content passed suite-Default_suite">
                       <span>
-                        <img src="failed.png" width="3%"/>
-                        <a href="#" panel-name="suite-Default_suite" title="tests.TC08_WorkPlan" class="method navigator-link" hash-for-method="WorkPlan({morning_endTime_Minute=00, evening_tourType=HD, evening_endTime_Minute=00, evening_endTime_Hour=08,...)">WorkPlan({morning_endTime_Minute=00, evening_tourType=HD, evening_endTime_Minute=00, evening_endTime_Hour=08,...)</a> <!-- method navigator-link -->
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Default_suite" title="tests.TC04_Order_CreditandCreditProductsTest" class="method navigator-link" hash-for-method="Order({tourType=EQ, morning_endTime_Minute=00, evening_tourType=HD, evening_endTime_Minute=00, evening_end...)">Order({tourType=EQ, morning_endTime_Minute=00, evening_tourType=HD, evening_endTime_Minute=00, evening_end...)</a> <!-- method navigator-link -->
                       </span>
                       <br/>
-                    </div> <!-- method-list-content failed suite-Default_suite -->
+                    </div> <!-- method-list-content passed suite-Default_suite -->
                   </li>
                 </ul>
               </div> <!-- suite-section-content -->
@@ -118,88 +118,26 @@
     <div class="wrapper">
       <div class="main-panel-root">
         <div panel-name="suite-Default_suite" class="panel Default_suite">
-          <div class="suite-Default_suite-class-failed">
+          <div class="suite-Default_suite-class-passed">
             <div class="main-panel-header rounded-window-top">
-              <img src="failed.png"/>
-              <span class="class-name">tests.TC08_WorkPlan</span>
+              <img src="passed.png"/>
+              <span class="class-name">tests.TC04_Order_CreditandCreditProductsTest</span>
             </div> <!-- main-panel-header rounded-window-top -->
             <div class="main-panel-content rounded-window-bottom">
               <div class="method">
                 <div class="method-content">
-                  <a name="WorkPlan({morning_endTime_Minute=00, evening_tourType=HD, evening_endTime_Minute=00, evening_endTime_Hour=08,...)">
-                  </a> <!-- WorkPlan({morning_endTime_Minute=00, evening_tourType=HD, evening_endTime_Minute=00, evening_endTime_Hour=08,...) -->
-                  <span class="method-name">WorkPlan</span>
-                  <span class="parameters">({morning_endTime_Minute=00, evening_tourType=HD, evening_endTime_Minute=00, evening_endTime_Hour=08, userID=MPO06, productName=Electrolyte, password=Password12, evening_startTime=3:00 PM, evening_startPoint=Rampura Submarket 3, retailerName=City Store, changeDate=21, evening_endPoint=Bashundhara Sub Market 2, morning_endTime=2, morning_orderDeliveryDay=3, evening_orderDeliveryDay=4, evening_workType=CW, evening_startTime_Minute=30, morning_startPoint=Rampura Submarket 1, evening_endTime=9:00 PM, addDate=30, endPoint=EndPoint, morning_startTime_Minute=00, evening_startTime_Hour=02, morning_endPoint=Rampura Submarket 2, morning_startTime_Hour=08, morning_endTime_Hour=02, productQty=5})</span>
-                  <div class="stack-trace">org.openqa.selenium.NoSuchElementException: Can&apos;t locate an element by this strategy: By.chained({By.xpath: //android.view.View//android.widget.TextView[@text=&apos;request successfully done&apos;]})
-	at io.appium.java_client.pagefactory.AppiumElementLocator.findElement(AppiumElementLocator.java:166)
-	at io.appium.java_client.pagefactory.interceptors.InterceptorOfASingleElement.call(InterceptorOfASingleElement.java:74)
-	at io.appium.java_client.proxy.Interceptor.intercept(Interceptor.java:78)
-	at org.openqa.selenium.remote.RemoteWebElement$ByteBuddy$skIjLg51.isDisplayed(Unknown Source)
-	at pages.WorkPlanPage.isSuccessMessageVisible(WorkPlanPage.java:315)
-	at tests.TC08_WorkPlan.WorkPlan(TC08_WorkPlan.java:80)
-	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
-	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
-	at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:687)
-	at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230)
-	at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
-	at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:995)
-	at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
-	at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
-	at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
-	at org.testng.TestRunner.privateRun(TestRunner.java:741)
-	at org.testng.TestRunner.run(TestRunner.java:616)
-	at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
-	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:413)
-	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:373)
-	at org.testng.SuiteRunner.run(SuiteRunner.java:312)
-	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
-	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
-	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1274)
-	at org.testng.TestNG.runSuitesLocally(TestNG.java:1208)
-	at org.testng.TestNG.runSuites(TestNG.java:1112)
-	at org.testng.TestNG.run(TestNG.java:1079)
-	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
-	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
-	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
-Caused by: org.openqa.selenium.TimeoutException: Expected condition failed: waiting for io.appium.java_client.pagefactory.AppiumElementLocator$WaitingFunction@20d3fff4
-(tried for 1 second with 500 milliseconds interval)
-	at org.openqa.selenium.support.ui.FluentWait.timeoutException(FluentWait.java:279)
-	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:234)
-	at io.appium.java_client.pagefactory.AppiumElementLocator.waitFor(AppiumElementLocator.java:135)
-	at io.appium.java_client.pagefactory.AppiumElementLocator.findElement(AppiumElementLocator.java:160)
-	... 31 more
-Caused by: org.openqa.selenium.NoSuchElementException: Cannot locate an element using By.chained({By.xpath: //android.view.View//android.widget.TextView[@text=&apos;request successfully done&apos;]})
-For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#nosuchelementexception
-Build info: version: &apos;4.43.0&apos;, revision: &apos;dd0f534&apos;
-System info: os.name: &apos;Windows 11&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;21.0.10&apos;
-Driver info: driver.version: RemoteWebDriver
-	at io.appium.java_client.pagefactory.bys.builder.ByChained.findElement(ByChained.java:74)
-	at org.openqa.selenium.remote.ElementLocation$ElementFinder$1.findElement(ElementLocation.java:140)
-	at org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:60)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:429)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:423)
-	at io.appium.java_client.pagefactory.bys.ContentMappedBy.findElement(ContentMappedBy.java:54)
-	at org.openqa.selenium.remote.ElementLocation$ElementFinder$1.findElement(ElementLocation.java:140)
-	at org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:60)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:429)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:423)
-	at io.appium.java_client.pagefactory.AppiumElementLocator.lambda$findElement$1(AppiumElementLocator.java:160)
-	at io.appium.java_client.pagefactory.AppiumElementLocator$WaitingFunction.apply(AppiumElementLocator.java:217)
-	at io.appium.java_client.pagefactory.AppiumElementLocator$WaitingFunction.apply(AppiumElementLocator.java:210)
-	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:210)
-	... 33 more
-
-</div> <!-- stack-trace -->
+                  <a name="Order({tourType=EQ, morning_endTime_Minute=00, evening_tourType=HD, evening_endTime_Minute=00, evening_end...)">
+                  </a> <!-- Order({tourType=EQ, morning_endTime_Minute=00, evening_tourType=HD, evening_endTime_Minute=00, evening_end...) -->
+                  <span class="method-name">Order</span>
+                  <span class="parameters">({tourType=EQ, morning_endTime_Minute=00, evening_tourType=HD, evening_endTime_Minute=00, evening_endTime_Hour=08, userID=MPO06, productName=Electrolyte, password=Password12, evening_startTime=3:00 PM, evening_startPoint=Rampura Submarket 3, retailerName=City Store, productName1=Secure, changeDate=21, productName2=Rugby, evening_endPoint=Bashundhara Sub Market 2, productQty1=6, productQty2=4, morning_endTime=2, morning_orderDeliveryDay=3, evening_orderDeliveryDay=4, evening_workType=CW, evening_startTime_Minute=30, morning_startPoint=Rampura Submarket 1, evening_endTime=9:00 PM, addDate=08, endPoint=EndPoint, morning_startTime_Minute=00, evening_startTime_Hour=02, morning_endPoint=Rampura Submarket 2, morning_startTime_Hour=08, morning_endTime_Hour=02, productQty=5, workplace=SSL Wireless})</span>
                 </div> <!-- method-content -->
               </div> <!-- method -->
             </div> <!-- main-panel-content rounded-window-bottom -->
-          </div> <!-- suite-Default_suite-class-failed -->
+          </div> <!-- suite-Default_suite-class-passed -->
         </div> <!-- panel Default_suite -->
         <div panel-name="test-xml-Default_suite" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">C:\Users\tahamidul.haque\AppData\Local\Temp\testng-eclipse-1288997977\testng-customsuite.xml</span>
+            <span class="header-content">C:\Users\tahamidul.haque\AppData\Local\Temp\testng-eclipse--904608680\testng-customsuite.xml</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <pre>
@@ -208,7 +146,7 @@ Driver info: driver.version: RemoteWebDriver
 &lt;suite name=&quot;Default suite&quot; guice-stage=&quot;DEVELOPMENT&quot;&gt;
   &lt;test thread-count=&quot;5&quot; name=&quot;Default test&quot; verbose=&quot;2&quot;&gt;
     &lt;classes&gt;
-      &lt;class name=&quot;tests.TC08_WorkPlan&quot;/&gt;
+      &lt;class name=&quot;tests.TC04_Order_CreditandCreditProductsTest&quot;/&gt;
     &lt;/classes&gt;
   &lt;/test&gt; &lt;!-- Default test --&gt;
 &lt;/suite&gt; &lt;!-- Default suite --&gt;
@@ -250,14 +188,14 @@ data.addColumn('string', 'Class');
 data.addColumn('number', 'Time (ms)');
 data.addRows(1);
 data.setCell(0, 0, 0)
-data.setCell(0, 1, 'WorkPlan')
-data.setCell(0, 2, 'tests.TC08_WorkPlan')
-data.setCell(0, 3, 771444);
+data.setCell(0, 1, 'Order')
+data.setCell(0, 2, 'tests.TC04_Order_CreditandCreditProductsTest')
+data.setCell(0, 3, 217851);
 window.suiteTableData['Default_suite']= { tableData: data, tableDiv: 'times-div-Default_suite'}
 return data;
 }
               </script>
-              <span class="suite-total-time">Total running time: 12 minutes</span>
+              <span class="suite-total-time">Total running time: 3 minutes</span>
               <div id="times-div-Default_suite">
               </div> <!-- times-div-Default_suite -->
             </div> <!-- times-div -->
@@ -283,20 +221,18 @@ return data;
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <div class="chronological-class">
-              <div class="chronological-class-name">tests.TC08_WorkPlan</div> <!-- chronological-class-name -->
+              <div class="chronological-class-name">tests.TC04_Order_CreditandCreditProductsTest</div> <!-- chronological-class-name -->
               <div class="configuration-class before">
                 <span class="method-name">setUp</span>
                 <span class="method-start">0 ms</span>
               </div> <!-- configuration-class before -->
               <div class="test-method">
-                <img src="failed.png">
-                </img>
-                <span class="method-name">WorkPlan({morning_endTime_Minute=00, evening_tourType=HD, evening_endTime_Minute=00, evening_endTime_Hour=08,...)</span>
-                <span class="method-start">8897 ms</span>
+                <span class="method-name">Order({tourType=EQ, morning_endTime_Minute=00, evening_tourType=HD, evening_endTime_Minute=00, evening_end...)</span>
+                <span class="method-start">10540 ms</span>
               </div> <!-- test-method -->
               <div class="configuration-class after">
                 <span class="method-name">tearDown</span>
-                <span class="method-start">780346 ms</span>
+                <span class="method-start">228400 ms</span>
               </div> <!-- configuration-class after -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->

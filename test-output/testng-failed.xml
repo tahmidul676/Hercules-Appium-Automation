@@ -3,13 +3,13 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="tests.TC08_WorkPlan">
+      <class name="tests.TC03_Order_CashandCreditProductsTest">
         <methods>
           <include name="setUp"/>
-          <include name="WorkPlan" invocation-numbers="0"/>
           <include name="tearDown"/>
+          <include name="Order" invocation-numbers="0"/>
         </methods>
-      </class> <!-- tests.TC08_WorkPlan -->
+      </class> <!-- tests.TC03_Order_CashandCreditProductsTest -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

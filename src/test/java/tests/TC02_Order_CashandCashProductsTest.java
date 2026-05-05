@@ -35,22 +35,38 @@ public class TC02_Order_CashandCashProductsTest extends AndroidBase {
 		orderPage.clickMatchedRetailer();
 		Thread.sleep(5000);
 		orderPage.selectCashAndCashProducts();
-
+		Thread.sleep(5000);
 		String actualText = orderPage.getPrepareOrderText();
 		String expectedText = "Prepare Order";
 		Assert.assertEquals(actualText, expectedText, "Prepare Order text mismatch!");
 
+		// 1
 		orderPage.clickSearchProduct(input.get("productName"));
 		orderPage.clickAddProduct();
 		orderPage.enterQuantity(input.get("productQty"));
 		orderPage.clickConfirm();
+		Thread.sleep(5000);
+		// 2
+		orderPage.clickSearchProduct(input.get("productName1"));
+		orderPage.clickAddProduct();
+		orderPage.enterQuantity(input.get("productQty1"));
+		orderPage.clickConfirm();
+		Thread.sleep(5000);
+		// 3
+		orderPage.clickSearchProduct(input.get("productName2"));
+		orderPage.clickAddProduct();
+		orderPage.enterQuantity(input.get("productQty2"));
+		orderPage.clickConfirm();
+
 		orderPage.clickSubmit();
 
 		// Over Due List
 		orderPage.clickCommitPayDay();
 		orderPage.clickAddDateForAllInvoices(input.get("addDate"));
 		orderPage.clickContinue();
-		Thread.sleep(9000);
+		Thread.sleep(15000);
+		orderPage.clickSubmit();
+		Thread.sleep(5000);
 
 	}
 
