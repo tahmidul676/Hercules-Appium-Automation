@@ -5,8 +5,12 @@
 		"retailerName": "City Store",
 		"productQty": "5",
 		"productName": "Electrolyte",
-		"addDate": "30",
+		"addDate": "08",
 		"changeDate": "21",
+		"productQty1": "6",
+		"productName1": "Secure",
+		"productQty2": "4",
+		"productName2": "Rugby",
 		"morning_orderDeliveryDay": "3",
 		"evening_orderDeliveryDay": "4",
 		"endPoint":"EndPoint",
@@ -26,6 +30,8 @@
 		"evening_startTime": "3:00 PM",
 		"evening_endTime": "9:00 PM",
 		"evening_startPoint": "Rampura Submarket 3",
-		"evening_endPoint": "Bashundhara Sub Market 2"
+		"evening_endPoint": "Bashundhara Sub Market 2",
+		"workplace":"SSL Wireless",
+		"tourType": "EQ"
 	}
 ]

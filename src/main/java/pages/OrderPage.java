@@ -156,7 +156,7 @@ public class OrderPage extends AndroidActions {
 
 	public void clickAddDateForAllInvoices(String date) throws InterruptedException {
 		int processedCount = 0;
-		int maxScrollAttempts = 5;
+		int maxScrollAttempts = 2;
 		int scrollAttempts = 0;
 
 		while (scrollAttempts < maxScrollAttempts) {
