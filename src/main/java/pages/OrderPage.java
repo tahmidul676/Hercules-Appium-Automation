@@ -1,11 +1,14 @@
 package pages;
 
+import java.time.Duration;
 import java.util.HashMap;
 import java.util.List;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.pagefactory.AndroidFindBy;
@@ -112,10 +115,21 @@ public class OrderPage extends AndroidActions {
 		clickFirstMatchedProduct.click();
 	}
 
+//	public void clickSearchProduct(String productName) {
+//		clickSearchProduct.click();
+//		WebElement searchInput = driver.findElement(By.xpath("//android.widget.EditText"));
+//		searchInput.sendKeys(productName);
+//	}
 	public void clickSearchProduct(String productName) {
-		clickSearchProduct.click();
-		WebElement searchInput = driver.findElement(By.xpath("//android.widget.EditText"));
-		searchInput.sendKeys(productName);
+	    // Click to open search first
+	    clickSearchProduct.click();
+	    
+	    // Re-find EditText fresh after UI settles
+	    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+	    WebElement searchBox = wait.until(
+	        ExpectedConditions.elementToBeClickable(By.xpath("//android.widget.EditText"))
+	    );
+	    searchBox.sendKeys(productName);
 	}
 
 	public void clickAddProduct() {
@@ -156,7 +170,7 @@ public class OrderPage extends AndroidActions {
 
 	public void clickAddDateForAllInvoices(String date) throws InterruptedException {
 		int processedCount = 0;
-		int maxScrollAttempts = 2;
+		int maxScrollAttempts = 5;
 		int scrollAttempts = 0;
 
 		while (scrollAttempts < maxScrollAttempts) {
