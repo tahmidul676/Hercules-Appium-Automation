@@ -29,7 +29,8 @@ public class TC02_Order_CashandCashProductsTest extends AndroidBase {
 		homePage.clickSyncNow();
 		Thread.sleep(5000);
 		homePage.clickOrder();
-
+		Thread.sleep(5000);
+		
 		OrderPage orderPage = new OrderPage(driver);
 		orderPage.enterSearchRetailer(input.get("retailerName"));
 		orderPage.clickMatchedRetailer();
@@ -69,7 +70,7 @@ public class TC02_Order_CashandCashProductsTest extends AndroidBase {
 		Thread.sleep(5000);
 
 	}
-
+/*
 	@DataProvider
 	public Object[][] getData() throws IOException {
 
@@ -78,4 +79,25 @@ public class TC02_Order_CashandCashProductsTest extends AndroidBase {
 
 		return new Object[][] { { data.get(0) } };
 	}
+	
+	*/
+	
+	@DataProvider
+	public Object[][] getData() throws IOException {
+
+	    String basePath = System.getProperty("user.dir") + "//src//test//java//testData//";
+
+	    List<HashMap<String, String>> data = getMergedJsonData(
+	            basePath + "loginData.json",
+	            basePath + "testData.json"
+	    );
+
+	    Object[][] arr = new Object[data.size()][1];
+	    for (int i = 0; i < data.size(); i++) {
+	        arr[i][0] = data.get(i);
+	    }
+
+	    return arr;
+	}
+	
 }

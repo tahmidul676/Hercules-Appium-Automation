@@ -39,9 +39,11 @@ public class OrderPage extends AndroidActions {
 
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text=\"Prepare Order\"]")
 	private WebElement prepareOrderText;
-
-	@AndroidFindBy(xpath = "//android.widget.EditText")
+	
+	@AndroidFindBy(xpath = "//android.widget.TextView[@text=\"Search\"]")
 	private WebElement searchProductInput;
+//	@AndroidFindBy(xpath = "//android.widget.EditText")
+//	private WebElement searchProductInput;
 
 	@AndroidFindBy(xpath = "(//android.view.View[@content-desc=\"Details\"])[1]")
 	private WebElement clickFirstMatchedProduct;
@@ -105,10 +107,25 @@ public class OrderPage extends AndroidActions {
 		return prepareOrderText.getText();
 	}
 
-	public void enterSearchRetailer(String productName) {
-		searchProductInput.click();
-		searchProductInput.clear();
-		searchProductInput.sendKeys(productName);
+//	public void enterSearchRetailer(String productName) {
+//		searchProductInput.click();
+//		searchProductInput.clear();
+//		searchProductInput.sendKeys(productName);
+//	}
+	
+	public void enterSearchRetailer(String retailerName) {
+	    // Step 1: Click the "Search" TextView to activate the search input
+	    searchProductInput.click();
+
+	    // Step 2: Wait for the actual EditText input to appear, then type
+	    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+	    WebElement actualSearchInput = wait.until(
+	        ExpectedConditions.elementToBeClickable(
+	            By.xpath("//android.widget.EditText")
+	        )
+	    );
+	    actualSearchInput.clear();
+	    actualSearchInput.sendKeys(retailerName);
 	}
 
 	public void clickMatchedRetailer() {

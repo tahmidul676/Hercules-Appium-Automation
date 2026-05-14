@@ -63,8 +63,8 @@ public class AndroidBase extends utils.AppiumUtils {
 
         /*
         options.setAppPackage("com.sslwireless.dsas");
-        options.setAppActivity("com.sslwireless.dsas.ui.splash_screen.SplashScreen"); // 👈 Launcher activity
-        options.setNoReset(true); // 👈 Keeps login session → auto skips to Dashboard
+        options.setAppActivity("com.sslwireless.dsas.ui.splash_screen.SplashScreen"); //Launcher activity
+        options.setNoReset(true); //Keeps login session → auto skips to Dashboard
         */
         options.setCapability("autoGrantPermissions", true);
         options.setNewCommandTimeout(Duration.ofSeconds(300));

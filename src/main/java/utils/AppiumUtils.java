@@ -3,6 +3,7 @@ package utils;
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -26,4 +27,42 @@ public abstract class AppiumUtils {
 		return data;
 
 	}
+	
+	
+	// ==============================
+    // 2. Read MULTIPLE JSON files
+    // ==============================
+    public List<HashMap<String, String>> getJsonDataFromFiles(String... jsonFilePaths) throws IOException {
+
+        List<HashMap<String, String>> allData = new ArrayList<>();
+
+        for (String path : jsonFilePaths) {
+            allData.addAll(getJsonData(path));
+        }
+
+        return allData;
+    }
+    
+ // ==============================
+ // 3. Merge MULTIPLE JSON files into combined rows
+ // ==============================
+ public List<HashMap<String, String>> getMergedJsonData(String loginFilePath, String testDataFilePath) throws IOException {
+
+     List<HashMap<String, String>> loginDataList = getJsonData(loginFilePath);
+     List<HashMap<String, String>> testDataList  = getJsonData(testDataFilePath);
+
+     // Use first row of testData as common data for all login rows
+     HashMap<String, String> commonData = testDataList.get(0);
+
+     List<HashMap<String, String>> mergedList = new ArrayList<>();
+
+     for (HashMap<String, String> loginRow : loginDataList) {
+         HashMap<String, String> merged = new HashMap<>();
+         merged.putAll(commonData);   // test data first
+         merged.putAll(loginRow);     // login data overrides if same key
+         mergedList.add(merged);
+     }
+
+     return mergedList;
+ }
 }
