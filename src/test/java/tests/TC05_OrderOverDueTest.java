@@ -31,35 +31,61 @@ public class TC05_OrderOverDueTest extends AndroidBase {
 		homePage.clickOrder();
 
 		OrderPage orderPage = new OrderPage(driver);
-		orderPage.enterSearchRetailer(input.get("productName"));
+		orderPage.enterSearchRetailer(input.get("retailerName"));
 		orderPage.clickMatchedRetailer();
 		Thread.sleep(5000);
-		// Enter Cash/Credit - > Cash/Credit products
-		// Assertion
+		orderPage.selectCashAndCashProducts();
+		Thread.sleep(5000);
 		String actualText = orderPage.getPrepareOrderText();
 		String expectedText = "Prepare Order";
 		Assert.assertEquals(actualText, expectedText, "Prepare Order text mismatch!");
 
+		// 1
 		orderPage.clickSearchProduct(input.get("productName"));
 		orderPage.clickAddProduct();
 		orderPage.enterQuantity(input.get("productQty"));
 		orderPage.clickConfirm();
+		Thread.sleep(5000);
+		// 2
+		orderPage.clickSearchProduct(input.get("productName1"));
+		orderPage.clickAddProduct();
+		orderPage.enterQuantity(input.get("productQty1"));
+		orderPage.clickConfirm();
+		Thread.sleep(5000);
+		// 3
+		orderPage.clickSearchProduct(input.get("productName2"));
+		orderPage.clickAddProduct();
+		orderPage.enterQuantity(input.get("productQty2"));
+		orderPage.clickConfirm();
+
 		orderPage.clickSubmit();
 
 		// Over Due List
 		orderPage.clickCommitPayDay();
 		orderPage.clickAddDateForAllInvoices(input.get("addDate"));
-
+		orderPage.clickContinue();
+		Thread.sleep(15000);
+		orderPage.clickSubmit();
 		Thread.sleep(5000);
-
 	}
 
 	@DataProvider
 	public Object[][] getData() throws IOException {
 
-		List<HashMap<String, String>> data = getJsonData(
-				System.getProperty("user.dir") + "//src//test//java//testData//testData.json");
+	    String basePath = System.getProperty("user.dir") + "//src//test//java//testData//";
 
-		return new Object[][] { { data.get(0) } };
+	    List<HashMap<String, String>> data = getMergedJsonData(
+	            basePath + "loginData.json",
+	            basePath + "testData.json",
+	            basePath + "cash&CashProduct.json"
+	            
+	    );
+
+	    Object[][] arr = new Object[data.size()][1];
+	    for (int i = 0; i < data.size(); i++) {
+	        arr[i][0] = data.get(i);
+	    }
+
+	    return arr;
 	}
 }

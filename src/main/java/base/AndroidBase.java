@@ -35,9 +35,9 @@ public class AndroidBase extends utils.AppiumUtils {
 
         int port = Integer.parseInt(prop.getProperty("port"));
 
-        // Start Appium Server
+        // Start Appium Server //tahamidul.haque
         service = new AppiumServiceBuilder()
-                .withAppiumJS(new File("C:\\Users\\tahamidul.haque\\AppData\\Roaming\\npm\\node_modules\\appium\\build\\lib\\main.js"))
+                .withAppiumJS(new File("C:\\Users\\tahmi\\AppData\\Roaming\\npm\\node_modules\\appium\\build\\lib\\main.js"))
                 .withIPAddress(ipAddress)
                 .usingPort(port)
                 .withTimeout(Duration.ofSeconds(60))

@@ -24,6 +24,8 @@ public class DeliveryPage extends AndroidActions {
 
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text=\"Select All\"]")
 	private WebElement clickSelectAll;
+	@AndroidFindBy(uiAutomator = "new UiSelector().description(\"Back\").instance(1)")
+	private WebElement clickSingleDeliveryBtn;
 
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text=\"Upload\"]")
 	private WebElement clickUploadBtn;
@@ -49,7 +51,10 @@ public class DeliveryPage extends AndroidActions {
 
 	public void clickSelectAll() {
 		clickSelectAll.click();
-
+	}
+	
+	public void clickSingleDeliveryBtn() {
+		clickSingleDeliveryBtn.click();
 	}
 	
 	public void clickUpload() {

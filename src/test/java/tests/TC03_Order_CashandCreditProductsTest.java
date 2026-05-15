@@ -73,9 +73,20 @@ public class TC03_Order_CashandCreditProductsTest extends AndroidBase {
 	@DataProvider
 	public Object[][] getData() throws IOException {
 
-		List<HashMap<String, String>> data = getJsonData(
-				System.getProperty("user.dir") + "//src//test//java//testData//testData.json");
+	    String basePath = System.getProperty("user.dir") + "//src//test//java//testData//";
 
-		return new Object[][] { { data.get(0) } };
+	    List<HashMap<String, String>> data = getMergedJsonData(
+	            basePath + "loginData.json",
+	            basePath + "testData.json",
+	            basePath + "cash&CreditProduct.json"
+	            
+	    );
+
+	    Object[][] arr = new Object[data.size()][1];
+	    for (int i = 0; i < data.size(); i++) {
+	        arr[i][0] = data.get(i);
+	    }
+
+	    return arr;
 	}
 }
