@@ -89,7 +89,9 @@ public class TC02_Order_CashandCashProductsTest extends AndroidBase {
 
 	    List<HashMap<String, String>> data = getMergedJsonData(
 	            basePath + "loginData.json",
-	            basePath + "testData.json"
+	            basePath + "testData.json",
+	            basePath + "cash&CashProduct.json"
+	            
 	    );
 
 	    Object[][] arr = new Object[data.size()][1];

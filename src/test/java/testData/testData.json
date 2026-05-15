@@ -1,16 +1,7 @@
 [
 	{
-		"userID": "MPO06",
-		"password": "Password1",
 		"retailerName": "City Store",
-		"productQty": "4",
-		"productName": "Electrolyte",
 		"addDate": "13",
-		"changeDate": "10",
-		"productQty1": "17",
-		"productName1": "Mancer",
-		"productQty2": "8",
-		"productName2": "Esonaaf",
 		"morning_orderDeliveryDay": "3",
 		"evening_orderDeliveryDay": "4",
 		"endPoint":"EndPoint",

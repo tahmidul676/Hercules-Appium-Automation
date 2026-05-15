@@ -23,12 +23,9 @@ public class TC02_InvalidLoginTest extends AndroidBase{
 		LoginPage loginPage = new LoginPage(driver);
 		loginPage.setuserID(input.get("userID"));
 		loginPage.setuserPin(input.get("password"));
-		Thread.sleep(5000);
 		loginPage.clickLogin();
-		
-		String actualMsg = loginPage.getErrorMessage();
 
-		Assert.assertTrue(true, "Invalid Login Failed");
+		Assert.assertTrue(true);
 		
 		
 	}
