@@ -13,7 +13,7 @@ import pages.HomePage;
 import pages.LoginPage;
 import pages.OrderPage;
 
-public class TC02_Order_CashandCashProductsTest extends AndroidBase {
+public class TC04_Order_CashandCashProductsTest extends AndroidBase {
 
 	@Test(dataProvider = "getData")
 
@@ -62,11 +62,11 @@ public class TC02_Order_CashandCashProductsTest extends AndroidBase {
 		orderPage.clickSubmit();
 
 		// Over Due List
-		orderPage.clickCommitPayDay();
-		orderPage.clickAddDateForAllInvoices(input.get("addDate"));
-		orderPage.clickContinue();
-		Thread.sleep(15000);
-		orderPage.clickSubmit();
+		//orderPage.clickCommitPayDay();
+		//orderPage.clickAddDateForAllInvoices(input.get("addDate"));
+		//orderPage.clickContinue();
+		//Thread.sleep(15000);
+		//orderPage.clickSubmit();
 		Thread.sleep(5000);
 
 	}

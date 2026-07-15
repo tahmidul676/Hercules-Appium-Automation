@@ -18,7 +18,7 @@ import pages.LoginPage;
 import pages.OrderPage;
 import pages.WorkPlanPage;
 
-public class TC08_WorkPlan extends AndroidBase {
+public class TC015_WorkPlan extends AndroidBase {
 
 	@Test(dataProvider = "getData")
 
@@ -68,7 +68,7 @@ public class TC08_WorkPlan extends AndroidBase {
 			Thread.sleep(1000);
 			workPlanPage.clickEndTimeEvening();
 
-			workPlanPage.timePickerEndEvening(input.get("morning_endTime_Hour"), input.get("morning_endTime_Minute"));
+			workPlanPage.timePickerEndEvening(input.get("evening_endTime_Hour"), input.get("evening_endTime_Minute"));
 			
 			if (i == 7) {
 				workPlanPage.clickSubmit();
@@ -90,10 +90,21 @@ public class TC08_WorkPlan extends AndroidBase {
 	@DataProvider
 	public Object[][] getData() throws IOException {
 
-		List<HashMap<String, String>> data = getJsonData(
-				System.getProperty("user.dir") + "//src//test//java//testData//testData.json");
+	    String basePath = System.getProperty("user.dir") + "//src//test//java//testData//";
 
-		return new Object[][] { { data.get(0) } };
+	    List<HashMap<String, String>> data = getMergedJsonData(
+	            basePath + "loginData.json",
+	            basePath + "testData.json"
+	            
+	    );
+
+	    Object[][] arr = new Object[data.size()][1];
+	    for (int i = 0; i < data.size(); i++) {
+	        arr[i][0] = data.get(i);
+	    }
+
+	    return arr;
 	}
+	
 
 }

@@ -13,7 +13,7 @@ import pages.HomePage;
 import pages.LoginPage;
 import pages.OrderPage;
 
-public class TC04_Order_CreditandCreditProductsTest extends AndroidBase {
+public class TC06_Order_CreditandCreditProductsTest extends AndroidBase {
 
 	@Test(dataProvider = "getData")
 

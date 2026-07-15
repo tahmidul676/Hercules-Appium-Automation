@@ -1,6 +1,6 @@
 [
 	{
-		"retailerName": "City Store",
+		"retailerName": "M/S Humaun Kabir Enterprise",
 		"addDate": "13",
 		"morning_orderDeliveryDay": "3",
 		"evening_orderDeliveryDay": "4",
@@ -11,7 +11,7 @@
 		"morning_endTime_Minute": "00",
 		"evening_startTime_Hour": "02",
 		"evening_startTime_Minute": "30",
-		"evening_endTime_Hour": "08",
+		"evening_endTime_Hour": "09",
 		"evening_endTime_Minute": "00",
 		"morning_endTime": "2",
 		"morning_startPoint": "Rampura Submarket 1",

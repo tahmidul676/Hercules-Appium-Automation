@@ -14,7 +14,7 @@ import pages.HomePage;
 import pages.LoginPage;
 import pages.OrderPage;
 
-public class TC06_DeliveryTest  extends AndroidBase{
+public class TC07_DeliveryTest  extends AndroidBase{
 
 	@Test(dataProvider = "getData")
 
