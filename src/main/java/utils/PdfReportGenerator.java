@@ -68,6 +68,9 @@ public class PdfReportGenerator {
         System.out.println("✅ PDF Report saved: " + outputPath);
     }
 
+    
+    
+    
     // ── Header block ──────────────────────────────────────────────────
     private static void addHeader(Document doc, String suiteName,
                                    Map<String, String> results) {

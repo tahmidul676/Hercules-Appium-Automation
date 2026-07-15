@@ -31,9 +31,10 @@ public class TC01_LoginTest extends AndroidBase {
 
 	@DataProvider
 	public Object[][] getData() throws IOException {
-		List<HashMap<String, String>> data = getJsonData(
-				System.getProperty("user.dir") + "//src//test//java//testData//loginData.json");
+	    String basePath = System.getProperty("user.dir") + "//src//test//java//testData//";
+	    List<HashMap<String, String>> data = getMergedJsonData(basePath + "loginData.json");
 
-		return new Object[][] { { data.get(0) } };
+	    // Only return the first entry
+	    return new Object[][]{ { data.get(0) } };
 	}
 }

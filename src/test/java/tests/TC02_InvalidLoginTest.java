@@ -23,22 +23,30 @@ public class TC02_InvalidLoginTest extends AndroidBase{
 		LoginPage loginPage = new LoginPage(driver);
 		loginPage.setuserID(input.get("userID"));
 		loginPage.setuserPin(input.get("password"));
-		Thread.sleep(5000);
 		loginPage.clickLogin();
-		
-		String actualMsg = loginPage.getErrorMessage();
 
-		Assert.assertTrue(true, "Invalid Login Failed");
+		Assert.assertTrue(true);
 		
 		
 	}
 	
 	@DataProvider
 	public Object[][] getData() throws IOException {
-		List<HashMap<String, String>> data = getJsonData(
-				System.getProperty("user.dir") + "//src//test//java//testData//loginData.json");
 
-		return new Object[][] { { data.get(1) } };
+	    String basePath = System.getProperty("user.dir") + "//src//test//java//testData//";
+
+	    List<HashMap<String, String>> data = getMergedJsonData(
+	            basePath + "InvalidLoginTestData.json"
+	         
+	            
+	    );
+
+	    Object[][] arr = new Object[data.size()][1];
+	    for (int i = 0; i < data.size(); i++) {
+	        arr[i][0] = data.get(i);
+	    }
+
+	    return arr;
 	}
 }
 

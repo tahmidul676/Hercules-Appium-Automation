@@ -35,7 +35,7 @@ public class AndroidBase extends utils.AppiumUtils {
 
         int port = Integer.parseInt(prop.getProperty("port"));
 
-        // Start Appium Server
+        // Start Appium Server //tahmi
         service = new AppiumServiceBuilder()
                 .withAppiumJS(new File("C:\\Users\\tahamidul.haque\\AppData\\Roaming\\npm\\node_modules\\appium\\build\\lib\\main.js"))
                 .withIPAddress(ipAddress)
@@ -59,7 +59,7 @@ public class AndroidBase extends utils.AppiumUtils {
         options.setAutomationName("UiAutomator2");
         
         options.setApp(System.getProperty("user.dir")
-                + "\\src\\test\\java\\resources\\DSAS_UATRelease_v3_2_0_enamul_feature_money_collection_petty_cash.apk");
+                + "\\src\\test\\java\\resources\\DSAS_UATRelease_v3_2_0_naafco_migration_3b1195aa7_090726_1202.apk");
 
         /*
         options.setAppPackage("com.sslwireless.dsas");

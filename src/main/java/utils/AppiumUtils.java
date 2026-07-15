@@ -27,42 +27,34 @@ public abstract class AppiumUtils {
 		return data;
 
 	}
-	
-	
-	// ==============================
-    // 2. Read MULTIPLE JSON files
-    // ==============================
-    public List<HashMap<String, String>> getJsonDataFromFiles(String... jsonFilePaths) throws IOException {
 
-        List<HashMap<String, String>> allData = new ArrayList<>();
+    protected List<HashMap<String, String>> getMergedJsonData(String... filePaths) throws IOException {
+        ObjectMapper mapper = new ObjectMapper();
+        List<HashMap<String, String>> mergedList = new ArrayList<>();
 
-        for (String path : jsonFilePaths) {
-            allData.addAll(getJsonData(path));
+        // Read first file as the base list
+        List<HashMap<String, String>> baseList = mapper.readValue(
+            new File(filePaths[0]),
+            mapper.getTypeFactory().constructCollectionType(List.class, HashMap.class)
+        );
+
+        // For each base entry, merge data from the remaining files by index
+        for (int i = 0; i < baseList.size(); i++) {
+            HashMap<String, String> merged = new HashMap<>(baseList.get(i));
+
+            for (int j = 1; j < filePaths.length; j++) {
+                List<HashMap<String, String>> otherList = mapper.readValue(
+                    new File(filePaths[j]),
+                    mapper.getTypeFactory().constructCollectionType(List.class, HashMap.class)
+                );
+                if (i < otherList.size()) {
+                    merged.putAll(otherList.get(i)); // merge by row index
+                }
+            }
+
+            mergedList.add(merged);
         }
 
-        return allData;
+        return mergedList;
     }
-    
- // ==============================
- // 3. Merge MULTIPLE JSON files into combined rows
- // ==============================
- public List<HashMap<String, String>> getMergedJsonData(String loginFilePath, String testDataFilePath) throws IOException {
-
-     List<HashMap<String, String>> loginDataList = getJsonData(loginFilePath);
-     List<HashMap<String, String>> testDataList  = getJsonData(testDataFilePath);
-
-     // Use first row of testData as common data for all login rows
-     HashMap<String, String> commonData = testDataList.get(0);
-
-     List<HashMap<String, String>> mergedList = new ArrayList<>();
-
-     for (HashMap<String, String> loginRow : loginDataList) {
-         HashMap<String, String> merged = new HashMap<>();
-         merged.putAll(commonData);   // test data first
-         merged.putAll(loginRow);     // login data overrides if same key
-         mergedList.add(merged);
-     }
-
-     return mergedList;
- }
 }

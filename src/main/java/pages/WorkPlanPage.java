@@ -64,7 +64,7 @@ public class WorkPlanPage extends AndroidActions {
 	private WebElement clickTravelModeEvening;
 
 	// Sub-Market set to -> Rampura SubMarket
-	@AndroidFindBy(xpath = "//android.widget.TextView[@text=\"Rampura Submarket 1\"]")
+	@AndroidFindBy(xpath = "//android.widget.TextView[@text=\"Sreeramkati\"]")
 	private WebElement clickStarAndEndPoint;
 
 	@AndroidFindBy(xpath = "//android.widget.ScrollView/android.view.View[1]/android.view.View[5]")
