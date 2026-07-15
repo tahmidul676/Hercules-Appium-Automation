@@ -3,4 +3,5 @@ test-output/
 *.class
 .settings/
 .classpath
-.project.metadata/ 
+.project
+.metadata/
