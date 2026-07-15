@@ -36,7 +36,7 @@ public class HomePage extends AndroidActions {
 	@AndroidFindBy(xpath = "//android.widget.ScrollView/android.view.View[2]/android.view.View[5]/android.view.View")
 	private WebElement clickWorkPlanBtn;
 	
-	@AndroidFindBy(uiAutomator = "new UiSelector().className(\"android.view.View\").instance(14)")
+	@AndroidFindBy(uiAutomator = "new UiSelector().className(\"android.view.View\").instance(17)")
 	private WebElement clickAttendanceBtn;
 	
 

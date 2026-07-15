@@ -32,8 +32,7 @@ public class AttendancePage extends AndroidActions{
 	@AndroidFindBy(uiAutomator = "new UiSelector().className(\"android.widget.Button\").instance(0)")
 	private WebElement captureBtn;
 	
-	// Capture Image Button — instance(1)
-	@AndroidFindBy(uiAutomator = "new UiSelector().className(\"android.widget.Button\").instance(1)")
+	@AndroidFindBy(uiAutomator = "new UiSelector().className(\"android.widget.Button\")")
 	private WebElement captureImageBtn;
 
 	// Punch Button — instance(1)

@@ -59,7 +59,7 @@ public class AndroidBase extends utils.AppiumUtils {
         options.setAutomationName("UiAutomator2");
         
         options.setApp(System.getProperty("user.dir")
-                + "\\src\\test\\java\\resources\\DSAS_UATRelease_v3_2_0_naafco_migration_3b1195aa7_090726_1202.apk");
+                + "\\src\\test\\java\\resources\\DSAS_UATRelease_v3_2_0_naafco_supervisor_mFlow_a32c2bae4_140726.apk");
 
         /*
         options.setAppPackage("com.sslwireless.dsas");

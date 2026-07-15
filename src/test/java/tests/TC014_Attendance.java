@@ -44,7 +44,7 @@ public class TC014_Attendance extends AndroidBase {
 		attendancePage.clickCaptureImage();
 		Thread.sleep(5000);
 		attendancePage.clickPunch();
-
+		Thread.sleep(5000);
 	}
 
 	@DataProvider
