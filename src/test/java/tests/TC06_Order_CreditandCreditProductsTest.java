@@ -74,9 +74,7 @@ public class TC06_Order_CreditandCreditProductsTest extends AndroidBase {
 
 		String basePath = System.getProperty("user.dir") + "//src//test//java//testData//";
 
-		List<HashMap<String, String>> data = getMergedJsonData(
-				basePath + "loginData.json", 
-				basePath + "testData.json",
+		List<HashMap<String, String>> data = getMergedJsonData(basePath + "loginData.json", basePath + "testData.json",
 				basePath + "credit&CreditProduct.json"
 
 		);

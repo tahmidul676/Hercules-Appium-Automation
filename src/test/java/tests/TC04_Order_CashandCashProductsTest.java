@@ -30,7 +30,7 @@ public class TC04_Order_CashandCashProductsTest extends AndroidBase {
 		Thread.sleep(5000);
 		homePage.clickOrder();
 		Thread.sleep(5000);
-		
+
 		OrderPage orderPage = new OrderPage(driver);
 		orderPage.enterSearchRetailer(input.get("retailerName"));
 		orderPage.clickMatchedRetailer();
@@ -62,44 +62,41 @@ public class TC04_Order_CashandCashProductsTest extends AndroidBase {
 		orderPage.clickSubmit();
 
 		// Over Due List
-		//orderPage.clickCommitPayDay();
-		//orderPage.clickAddDateForAllInvoices(input.get("addDate"));
-		//orderPage.clickContinue();
-		//Thread.sleep(15000);
-		//orderPage.clickSubmit();
+		// orderPage.clickCommitPayDay();
+		// orderPage.clickAddDateForAllInvoices(input.get("addDate"));
+		// orderPage.clickContinue();
+		// Thread.sleep(15000);
+		// orderPage.clickSubmit();
 		Thread.sleep(5000);
 
 	}
-/*
+	/*
+	 * @DataProvider public Object[][] getData() throws IOException {
+	 * 
+	 * List<HashMap<String, String>> data = getJsonData(
+	 * System.getProperty("user.dir") +
+	 * "//src//test//java//testData//testData.json");
+	 * 
+	 * return new Object[][] { { data.get(0) } }; }
+	 * 
+	 */
+
 	@DataProvider
 	public Object[][] getData() throws IOException {
 
-		List<HashMap<String, String>> data = getJsonData(
-				System.getProperty("user.dir") + "//src//test//java//testData//testData.json");
+		String basePath = System.getProperty("user.dir") + "//src//test//java//testData//";
 
-		return new Object[][] { { data.get(0) } };
+		List<HashMap<String, String>> data = getMergedJsonData(basePath + "loginData.json", basePath + "testData.json",
+				basePath + "cash&CashProduct.json"
+
+		);
+
+		Object[][] arr = new Object[data.size()][1];
+		for (int i = 0; i < data.size(); i++) {
+			arr[i][0] = data.get(i);
+		}
+
+		return arr;
 	}
-	
-	*/
-	
-	@DataProvider
-	public Object[][] getData() throws IOException {
 
-	    String basePath = System.getProperty("user.dir") + "//src//test//java//testData//";
-
-	    List<HashMap<String, String>> data = getMergedJsonData(
-	            basePath + "loginData.json",
-	            basePath + "testData.json",
-	            basePath + "cash&CashProduct.json"
-	            
-	    );
-
-	    Object[][] arr = new Object[data.size()][1];
-	    for (int i = 0; i < data.size(); i++) {
-	        arr[i][0] = data.get(i);
-	    }
-
-	    return arr;
-	}
-	
 }
