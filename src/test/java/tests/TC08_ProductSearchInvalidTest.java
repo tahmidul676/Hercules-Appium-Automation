@@ -13,8 +13,8 @@ import pages.HomePage;
 import pages.LoginPage;
 import pages.OrderPage;
 
-public class TC08_ProductSearchInvalidTest extends AndroidBase{
-	
+public class TC08_ProductSearchInvalidTest extends AndroidBase {
+
 	@Test(dataProvider = "getData")
 
 	public void RetailerSearch(HashMap<String, String> input) throws InterruptedException {
@@ -30,37 +30,36 @@ public class TC08_ProductSearchInvalidTest extends AndroidBase{
 		Thread.sleep(5000);
 		homePage.clickOrder();
 		Thread.sleep(5000);
-		
+
 		OrderPage orderPage = new OrderPage(driver);
 		orderPage.enterSearchRetailer(input.get("retailerName"));
 		orderPage.clickMatchedRetailer();
 		Thread.sleep(5000);
 		orderPage.selectCashAndCashProducts();
 		Thread.sleep(5000);
-		
+
 		orderPage.clickSearchProduct(input.get("productNameInvalid"));
 		orderPage.isNoDataAvailableDisplayed();
 		Thread.sleep(5000);
 		Assert.assertTrue(orderPage.isNoDataAvailableDisplayed(), "No Data Available");
-		
+
 	}
-	
+
 	@DataProvider
 	public Object[][] getData() throws IOException {
 
-	    String basePath = System.getProperty("user.dir") + "//src//test//java//testData//";
+		String basePath = System.getProperty("user.dir") + "//src//test//java//testData//";
 
-	    List<HashMap<String, String>> data = getMergedJsonData(
-	            basePath + "loginData.json",
-	            basePath + "orderTestData.json"
-	            
-	    );
+		List<HashMap<String, String>> data = getMergedJsonData(basePath + "loginData.json",
+				basePath + "orderTestData.json"
 
-	    Object[][] arr = new Object[data.size()][1];
-	    for (int i = 0; i < data.size(); i++) {
-	        arr[i][0] = data.get(i);
-	    }
+		);
 
-	    return arr;
+		Object[][] arr = new Object[data.size()][1];
+		for (int i = 0; i < data.size(); i++) {
+			arr[i][0] = data.get(i);
+		}
+
+		return arr;
 	}
 }

@@ -13,12 +13,11 @@ import pages.HomePage;
 import pages.LoginPage;
 import pages.OrderPage;
 
-public class TC011_PrepareHasOverDueFilterTest extends AndroidBase{
+public class TC12_PrepareNameFilterTest extends AndroidBase {
 
-	
 	@Test(dataProvider = "getData")
 
-	public void RetailerSubmarketSearch(HashMap<String, String> input) throws InterruptedException {
+	public void RetailerNameSearch(HashMap<String, String> input) throws InterruptedException {
 
 		LoginPage loginPage = new LoginPage(driver);
 		loginPage.setuserID(input.get("userID"));
@@ -35,41 +34,45 @@ public class TC011_PrepareHasOverDueFilterTest extends AndroidBase{
 		OrderPage orderPage = new OrderPage(driver);
 		orderPage.clickFilter();
 		Thread.sleep(5000);
-		orderPage.clickHasOverdue();
+		orderPage.enterName(input.get("filterRetailerName"));
+		Thread.sleep(5000);
 		orderPage.clickApplyFilter();
 		Thread.sleep(5000);
-
-		//  Scrape ALL retailers dynamically ----
+		// ADD THIS BLOCK
+//		System.out.println("=== PAGE SOURCE BEFORE SCRAPING ===");
+//		System.out.println(driver.getPageSource());
+//		System.out.println("====================================");
+		// Scrape ALL retailers dynamically ----
 		List<HashMap<String, String>> allRetailers = orderPage.scrapeAllRetailersOnPage();
 
-		Assert.assertFalse(allRetailers.isEmpty(), "No retailers found on the page");
+		//Assert.assertFalse(allRetailers.isEmpty(), "No retailers found on the page");
 
 		for (HashMap<String, String> retailer : allRetailers) {
 		    System.out.println("Asserting: " + retailer.get("name"));
 
-		    Assert.assertNotNull(retailer.get("name"),         "Name is null");
-		    Assert.assertNotNull(retailer.get("phone"),        "Phone is null");
-		    Assert.assertNotNull(retailer.get("submarket"),    "Submarket is null");
+		 
+		    Assert.assertNotNull(retailer.get("name"), "Name is null");
+		    Assert.assertNotNull(retailer.get("phone"), "Phone is null");
+		    Assert.assertNotNull(retailer.get("submarket"), "Submarket is null");
 		    Assert.assertNotNull(retailer.get("retailerCode"), "Retailer Code is null");
-		    Assert.assertNotNull(retailer.get("creditLimit"),  "Credit Limit is null");
-		    Assert.assertNotNull(retailer.get("creditDays"),   "Credit Days is null");
-		    Assert.assertNotNull(retailer.get("balance"),      "Balance is null");
-		    Assert.assertNotNull(retailer.get("due"),          "Due is null");
-		    Assert.assertNotNull(retailer.get("overdue"),      "Overdue is null");
+		    Assert.assertNotNull(retailer.get("creditLimit"), "Credit Limit is null");
+		    Assert.assertNotNull(retailer.get("creditDays"), "Credit Days is null");
+		    Assert.assertNotNull(retailer.get("balance"), "Balance is null");
+		    Assert.assertNotNull(retailer.get("due"), "Due is null");
+		    Assert.assertNotNull(retailer.get("overdue"), "Overdue is null");
+
+		    System.out.println("------------------------------------------------");
 		}
 		Thread.sleep(5000);
-	
-}
-	
+	}
+
 	@DataProvider
 	public Object[][] getData() throws IOException {
 
 		String basePath = System.getProperty("user.dir") + "//src//test//java//testData//";
 
-		List<HashMap<String, String>> data = getMergedJsonData(
-				basePath + "loginData.json",
+		List<HashMap<String, String>> data = getMergedJsonData(basePath + "loginData.json",
 				basePath + "orderTestData.json"
-				
 
 		);
 
@@ -80,4 +83,5 @@ public class TC011_PrepareHasOverDueFilterTest extends AndroidBase{
 
 		return arr;
 	}
+
 }

@@ -13,7 +13,7 @@ import pages.HomePage;
 import pages.LoginPage;
 import pages.OrderPage;
 
-public class TC03_DraftSaveTest extends AndroidBase{
+public class TC03_DraftSaveTest extends AndroidBase {
 	@Test(dataProvider = "getData")
 
 	public void Order(HashMap<String, String> input) throws InterruptedException {
@@ -29,7 +29,7 @@ public class TC03_DraftSaveTest extends AndroidBase{
 		Thread.sleep(5000);
 		homePage.clickOrder();
 		Thread.sleep(5000);
-		
+
 		OrderPage orderPage = new OrderPage(driver);
 		orderPage.enterSearchRetailer(input.get("retailerName"));
 		orderPage.clickMatchedRetailer();
@@ -52,13 +52,13 @@ public class TC03_DraftSaveTest extends AndroidBase{
 		orderPage.enterQuantity(input.get("productQty1"));
 		orderPage.clickConfirm();
 		Thread.sleep(5000);
-     	// 3
+		// 3
 		orderPage.clickSearchProduct(input.get("productName2"));
 		orderPage.clickAddProduct();
 		orderPage.enterQuantity(input.get("productQty2"));
 		orderPage.clickConfirm();
 
-		//orderPage.clickSubmit();
+		// orderPage.clickSubmit();
 
 		// Over Due List
 //		orderPage.clickCommitPayDay();
@@ -70,31 +70,29 @@ public class TC03_DraftSaveTest extends AndroidBase{
 		Thread.sleep(5000);
 		orderPage.isDraftSuccessMessageDisplayed();
 		Thread.sleep(5000);
-		Assert.assertTrue(orderPage.isDraftSuccessMessageDisplayed(), "Order saved to local storage successfully. Don't forgot to sync when you get online");
-		//orderPage.clickSaveDraft();
+		Assert.assertTrue(orderPage.isDraftSuccessMessageDisplayed(),
+				"Order saved to local storage successfully. Don't forgot to sync when you get online");
+		// orderPage.clickSaveDraft();
 		Thread.sleep(5000);
 		orderPage.clickGoHome();
 		orderPage.clickDraftTab();
 	}
 
-	
 	@DataProvider
 	public Object[][] getData() throws IOException {
 
-	    String basePath = System.getProperty("user.dir") + "//src//test//java//testData//";
+		String basePath = System.getProperty("user.dir") + "//src//test//java//testData//";
 
-	    List<HashMap<String, String>> data = getMergedJsonData(
-	            basePath + "loginData.json",
-	            basePath + "testData.json",
-	            basePath + "cash&CashProduct.json"
-	            
-	    );
+		List<HashMap<String, String>> data = getMergedJsonData(basePath + "loginData.json", basePath + "testData.json",
+				basePath + "cash&CashProduct.json"
 
-	    Object[][] arr = new Object[data.size()][1];
-	    for (int i = 0; i < data.size(); i++) {
-	        arr[i][0] = data.get(i);
-	    }
+		);
 
-	    return arr;
+		Object[][] arr = new Object[data.size()][1];
+		for (int i = 0; i < data.size(); i++) {
+			arr[i][0] = data.get(i);
+		}
+
+		return arr;
 	}
 }

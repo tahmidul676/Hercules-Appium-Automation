@@ -2,20 +2,28 @@ package pages;
 
 import java.time.Duration;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Point;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Pause;
+import org.openqa.selenium.interactions.PointerInput;
+import org.openqa.selenium.interactions.Sequence;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import io.appium.java_client.AppiumBy;
+import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
+import io.appium.java_client.touch.offset.PointOption;
 import utils.AndroidActions;
 
 public class OrderPage extends AndroidActions {
@@ -135,9 +143,39 @@ public class OrderPage extends AndroidActions {
     // Go Home
     @AndroidFindBy(uiAutomator = "new UiSelector().text(\"Go Home\")")
     private WebElement goHomeClick;
-	
+    
+    // List
+    @AndroidFindBy(uiAutomator = "new UiSelector().text(\"List\")")
+    private WebElement listOption;
+    
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text=\"Order Details\"]")
+	private WebElement listOrderText;
+    
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text=\"Edit Order\"]")
+	private WebElement editOrderText;
+    
+    // Edit Order
+    
+    @AndroidFindBy(uiAutomator = "new UiSelector().text(\"Search Product\")")
+    private WebElement searchProductField;
+
+    @AndroidFindBy(uiAutomator = "new UiSelector().text(\"Attachment\")")
+    private WebElement attachmentOption;
+
+    @AndroidFindBy(uiAutomator = "new UiSelector().text(\"Update Order\")")
+    private WebElement updateOrderButton;
+
+    @AndroidFindBy(uiAutomator = "new UiSelector().text(\"Remarks\")")
+    private WebElement remarksField;
+    
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text=\"Yes\"]")
+   	private WebElement yesOrderBtn;
+    
+    @AndroidFindBy(uiAutomator = "new UiSelector().text(\"Your Order Have been Updated Successfully\")")
+    private WebElement txtUpdatedSuccessMessage;
 
 	//-----------------------------------------------------
+    
 
 	public void selectCashAndCashProducts() {
 		clickCash.click();
@@ -156,6 +194,10 @@ public class OrderPage extends AndroidActions {
 
 	public String getPrepareOrderText() {
 		return prepareOrderText.getText();
+	}
+	
+	public String getOrderListText() {
+		return listOrderText.getText();
 	}
 
 	/*
@@ -303,11 +345,11 @@ public class OrderPage extends AndroidActions {
 	        int cardIndex = 1;
 
 	        while (true) {
-	            String cardXPath =
-	                "//android.widget.FrameLayout[@resource-id='android:id/content']"
-	                + "/s3.z0[2]/android.view.View/android.view.View[4]"
-	                + "/android.view.View[" + cardIndex + "]";
 
+	        	String cardXPath =
+	        		    "//android.widget.FrameLayout[@resource-id='android:id/content']"
+	        		    + "/r3.x0[2]/android.view.View/android.view.View[4]"
+	        		    + "/android.view.View[" + cardIndex + "]";
 	            List<WebElement> cards = driver.findElements(By.xpath(cardXPath));
 
 	            if (cards.isEmpty()) {
@@ -320,7 +362,7 @@ public class OrderPage extends AndroidActions {
 	            try {
 	                // Retailer Code as unique key
 	                List<WebElement> codeEls = cardContainer.findElements(
-	                    By.xpath(".//android.widget.TextView[starts-with(@text, 'R00')]")
+	                    By.xpath(".//android.widget.TextView[starts-with(@text, '2')]")
 	                );
 
 	                if (codeEls.isEmpty()) {
@@ -562,6 +604,197 @@ public class OrderPage extends AndroidActions {
     // Go Home
     public void clickGoHome() {
     	goHomeClick.click();
+    }
+    
+    //Order  List
+    public void selectList() {
+        listOption.click();
+    }
+    
+    public void editOrder() {
+    	editOrderText.click();
+    }
+    
+    
+    public void clickOrderByOrderId(String orderId) throws InterruptedException {
+        int maxScrollAttempts = 5;
+        int scrollAttempts = 0;
+        boolean found = false;
+
+        while (scrollAttempts < maxScrollAttempts && !found) {
+
+            List<WebElement> orderElements = driver.findElements(
+                    By.xpath("//android.widget.TextView[@text='" + orderId + "']"));
+
+            if (!orderElements.isEmpty()) {
+                try {
+                    WebElement orderText = orderElements.get(0);
+                    Point location = orderText.getLocation();
+                    Dimension size = orderText.getSize();
+
+                    int tapX = location.getX() + (size.getWidth() / 2);
+                    int tapY = location.getY() + (size.getHeight() / 2);
+
+                    PointerInput finger = new PointerInput(PointerInput.Kind.TOUCH, "finger");
+                    Sequence tap = new Sequence(finger, 1);
+                    tap.addAction(finger.createPointerMove(Duration.ofMillis(0),
+                            PointerInput.Origin.viewport(), tapX, tapY));
+                    tap.addAction(finger.createPointerDown(PointerInput.MouseButton.LEFT.asArg()));
+                    tap.addAction(new Pause(finger, Duration.ofMillis(100)));
+                    tap.addAction(finger.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));
+
+                    driver.perform(Collections.singletonList(tap));
+
+                    System.out.println("Tapped order row: " + orderId);
+                    found = true;
+
+                } catch (Exception e) {
+                    System.out.println("Error tapping order " + orderId + ": " + e.getMessage());
+                }
+            } else {
+                System.out.println("Order not visible, scrolling... attempt " + (scrollAttempts + 1));
+                scrollDown();
+                Thread.sleep(1200);
+                scrollAttempts++;
+            }
+        }
+
+        if (!found) {
+            System.out.println("Order ID not found after scrolling: " + orderId);
+        }
+    }
+    
+    // Edit Order Page 
+    
+    public void yesOrder() {
+    	yesOrderBtn.click();
+    }
+    
+
+
+    // ---------- Prepare Order methods ----------
+
+    /**
+     * Scrolls down repeatedly until "Update Order" button is visible
+     * (i.e., reached the end of the Order Items table)
+     */
+    public void scrollToEndOfOrderItems() throws InterruptedException {
+        int maxScrollAttempts = 6;
+        int attempts = 0;
+
+        while (attempts < maxScrollAttempts) {
+            List<WebElement> updateBtn = driver.findElements(
+                    By.xpath("//android.widget.TextView[@text='Remarks']"));
+
+            if (!updateBtn.isEmpty() && updateBtn.get(0).isDisplayed()) {
+                System.out.println("Reached end of Order Items - Remarks visible");
+                break;
+            }
+
+            scrollDown();
+            Thread.sleep(800);
+            attempts++;
+        }
+    }
+
+    /**
+     * Clicks the edit icon (pencil) in the Order Items row matching the given product name.
+     * Dynamic - works regardless of row position.
+     */
+    public void clickEditIconByProductName(String productName) throws InterruptedException {
+        scrollToEndOfOrderItems();
+
+        List<WebElement> productElements = driver.findElements(
+                By.xpath("//android.widget.TextView[@text='" + productName + "']"));
+
+        if (productElements.isEmpty()) {
+            System.out.println("Product not found in Order Items: " + productName);
+            return;
+        }
+
+        try {
+            WebElement editIcon = productElements.get(0).findElement(
+                    By.xpath("./following::*[contains(@class,'ImageView') or contains(@class,'ImageButton')][1]"));
+
+            editIcon.click();
+            System.out.println("Clicked edit icon for: " + productName);
+
+        } catch (Exception e) {
+            System.out.println("Error clicking edit icon for " + productName + ": " + e.getMessage());
+
+            // Fallback: tap by coordinates relative to the product name row
+            try {
+                WebElement productText = productElements.get(0);
+                Point location = productText.getLocation();
+                Dimension size = productText.getSize();
+
+                int tapX = location.getX() + 430; // TODO: verify actual offset to edit icon
+                int tapY = location.getY() + (size.getHeight() / 2);
+
+                tapAtCoordinates(tapX, tapY);
+                System.out.println("Tapped edit icon (fallback) for: " + productName);
+
+            } catch (Exception e2) {
+                System.out.println("Fallback tap also failed: " + e2.getMessage());
+            }
+        }
+    }
+
+    public void updateQuantity(String qty) {
+        // TODO: Replace with actual locator for the qty input field that appears after tapping edit
+        WebElement qtyInput = driver.findElement(By.xpath("//android.widget.EditText"));
+        qtyInput.clear();
+        qtyInput.sendKeys(qty);
+
+        // TODO: Add a confirm/tick tap here if the qty edit needs a separate save step
+    }
+
+    public void clickUpdateOrder() {
+        updateOrderButton.click();
+    }
+
+//    public boolean isOrderUpdateSuccessful() {
+//        // TODO: Replace with actual success toast/message locator
+//      //  List<WebElement> successMsg = driver.findElements(
+//     //           By.xpath("//android.widget.TextView[contains(@text,'success') or contains(@text,'updated')]"));
+//        return !successMsg.isEmpty();
+//    }
+    
+    public boolean isUpdatedSuccessMessageDisplayed() {
+        return txtUpdatedSuccessMessage.isDisplayed();
+    }
+
+    // ---------- Shared helpers ----------
+
+    private void tapAtCoordinates(int x, int y) {
+        PointerInput finger = new PointerInput(PointerInput.Kind.TOUCH, "finger");
+        Sequence tap = new Sequence(finger, 1);
+        tap.addAction(finger.createPointerMove(Duration.ofMillis(0),
+                PointerInput.Origin.viewport(), x, y));
+        tap.addAction(finger.createPointerDown(PointerInput.MouseButton.LEFT.asArg()));
+        tap.addAction(new Pause(finger, Duration.ofMillis(100)));
+        tap.addAction(finger.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));
+
+        driver.perform(Collections.singletonList(tap));
+    }
+
+    public void scrollDown() {
+        // TODO: reuse your existing scrollDown() implementation from AndroidBase if it's there instead
+        int screenHeight = driver.manage().window().getSize().getHeight();
+        int screenWidth = driver.manage().window().getSize().getWidth();
+
+        int startX = screenWidth / 2;
+        int startY = (int) (screenHeight * 0.8);
+        int endY = (int) (screenHeight * 0.2);
+
+        PointerInput finger = new PointerInput(PointerInput.Kind.TOUCH, "finger");
+        Sequence swipe = new Sequence(finger, 1);
+        swipe.addAction(finger.createPointerMove(Duration.ofMillis(0), PointerInput.Origin.viewport(), startX, startY));
+        swipe.addAction(finger.createPointerDown(PointerInput.MouseButton.LEFT.asArg()));
+        swipe.addAction(finger.createPointerMove(Duration.ofMillis(300), PointerInput.Origin.viewport(), startX, endY));
+        swipe.addAction(finger.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));
+
+        driver.perform(Collections.singletonList(swipe));
     }
     
 }

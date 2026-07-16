@@ -18,22 +18,22 @@ import pages.HomePage;
 import pages.LoginPage;
 import pages.WorkPlanPage;
 
-public class TC014_Attendance extends AndroidBase {
+public class TC14_Attendance extends AndroidBase {
 	@Test(dataProvider = "getData")
 
 	public void Attendance(HashMap<String, String> input) throws InterruptedException {
 
 		LoginPage loginPage = new LoginPage(driver);
-        loginPage.setuserID(input.get("userID"));
-       loginPage.setuserPin(input.get("password"));
-       loginPage.clickLogin();
+		loginPage.setuserID(input.get("userID"));
+		loginPage.setuserPin(input.get("password"));
+		loginPage.clickLogin();
 
-		 HomePage homePage = new HomePage(driver);
-		 homePage.clickSyncNow();
-		 homePage.clickSyncNow();
+		HomePage homePage = new HomePage(driver);
+		homePage.clickSyncNow();
+		homePage.clickSyncNow();
 
-		//HomePage homePage = new HomePage(driver);
-		homePage.waitForHomePageToLoad();   // For explicit wait
+		// HomePage homePage = new HomePage(driver);
+		homePage.waitForHomePageToLoad(); // For explicit wait
 		homePage.clickAttendance();
 		Thread.sleep(5000);
 
@@ -50,20 +50,18 @@ public class TC014_Attendance extends AndroidBase {
 	@DataProvider
 	public Object[][] getData() throws IOException {
 
-	    String basePath = System.getProperty("user.dir") + "//src//test//java//testData//";
+		String basePath = System.getProperty("user.dir") + "//src//test//java//testData//";
 
-	    List<HashMap<String, String>> data = getMergedJsonData(
-	            basePath + "loginData.json",
-	            basePath + "testData.json"
-	            
-	    );
+		List<HashMap<String, String>> data = getMergedJsonData(basePath + "loginData.json", basePath + "testData.json"
 
-	    Object[][] arr = new Object[data.size()][1];
-	    for (int i = 0; i < data.size(); i++) {
-	        arr[i][0] = data.get(i);
-	    }
+		);
 
-	    return arr;
+		Object[][] arr = new Object[data.size()][1];
+		for (int i = 0; i < data.size(); i++) {
+			arr[i][0] = data.get(i);
+		}
+
+		return arr;
 	}
 
 }

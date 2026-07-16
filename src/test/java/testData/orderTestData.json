@@ -1,11 +1,14 @@
 [
 	{
-		
 		"retailerName": "M/S Humaun Kabir Enterprise",
 		"retailerNameInvalid": "Ramu",
-		"filterRetailerName": "M/S Humaun Kabir Enterprise", 
+		"filterRetailerName": "M/S Humaun Kabir Enterprise",
 		"submarket": "Sreeramkati",
-	 "productNameInvalid":"Laptop"
-		
+		"productNameInvalid": "Laptop",
+		"orderId": "ORD-260714-238145-01699",
+		"productName": "Rotenone 9% 1kg",
+		"newQty": "5",
+		"secondProductName": "Organic Fertilizer 1kg",
+		"secondProductNewQty": "5"
 	}
 ]

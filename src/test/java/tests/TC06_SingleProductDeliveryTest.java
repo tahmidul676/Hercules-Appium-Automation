@@ -12,10 +12,8 @@ import pages.DeliveryPage;
 import pages.HomePage;
 import pages.LoginPage;
 
-public class TC06_SingleProductDeliveryTest extends AndroidBase{
+public class TC06_SingleProductDeliveryTest extends AndroidBase {
 
-	
-	
 	@Test(dataProvider = "getData")
 
 	public void SingleProductDelivery(HashMap<String, String> input) throws InterruptedException {
@@ -59,7 +57,7 @@ public class TC06_SingleProductDeliveryTest extends AndroidBase{
 		DeliveryPage deliveryPage = new DeliveryPage(driver);
 		deliveryPage.clickChangeDate();
 		deliveryPage.selectDateFromCalendar(input.get("changeDate"));
-		
+
 		deliveryPage.clickSingleDeliveryBtn();
 		Thread.sleep(5000);
 		deliveryPage.clickUpload();
@@ -70,20 +68,17 @@ public class TC06_SingleProductDeliveryTest extends AndroidBase{
 	@DataProvider
 	public Object[][] getData() throws IOException {
 
-	    String basePath = System.getProperty("user.dir") + "//src//test//java//testData//";
+		String basePath = System.getProperty("user.dir") + "//src//test//java//testData//";
 
-	    List<HashMap<String, String>> data = getMergedJsonData(
-	            basePath + "loginData.json",
-	            basePath + "delivery.json"
-	            
-	            
-	    );
+		List<HashMap<String, String>> data = getMergedJsonData(basePath + "loginData.json", basePath + "delivery.json"
 
-	    Object[][] arr = new Object[data.size()][1];
-	    for (int i = 0; i < data.size(); i++) {
-	        arr[i][0] = data.get(i);
-	    }
+		);
 
-	    return arr;
+		Object[][] arr = new Object[data.size()][1];
+		for (int i = 0; i < data.size(); i++) {
+			arr[i][0] = data.get(i);
+		}
+
+		return arr;
 	}
 }
