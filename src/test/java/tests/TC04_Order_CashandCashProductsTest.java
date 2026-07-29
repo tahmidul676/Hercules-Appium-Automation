@@ -60,6 +60,10 @@ public class TC04_Order_CashandCashProductsTest extends AndroidBase {
 		orderPage.clickConfirm();
 
 		orderPage.clickSubmit();
+		
+		orderPage.isOrderSuccessMessageDisplayed();
+		Assert.assertTrue(orderPage.isOrderSuccessMessageDisplayed(),
+		        "Order successful!");
 
 		// Over Due List
 		// orderPage.clickCommitPayDay();

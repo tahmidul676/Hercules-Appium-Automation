@@ -13,7 +13,7 @@ import pages.HomePage;
 import pages.LoginPage;
 import pages.OrderPage;
 
-public class TC06_Order_CreditandCreditProductsTest extends AndroidBase {
+public class TC08_OrderOverDueTest extends AndroidBase {
 
 	@Test(dataProvider = "getData")
 
@@ -34,8 +34,8 @@ public class TC06_Order_CreditandCreditProductsTest extends AndroidBase {
 		orderPage.enterSearchRetailer(input.get("retailerName"));
 		orderPage.clickMatchedRetailer();
 		Thread.sleep(5000);
-		orderPage.selectCreditAndCreditProducts();
-		// Assertion
+		orderPage.selectCashAndCashProducts();
+		Thread.sleep(5000);
 		String actualText = orderPage.getPrepareOrderText();
 		String expectedText = "Prepare Order";
 		Assert.assertEquals(actualText, expectedText, "Prepare Order text mismatch!");
@@ -61,16 +61,12 @@ public class TC06_Order_CreditandCreditProductsTest extends AndroidBase {
 		orderPage.clickSubmit();
 
 		// Over Due List
-//		orderPage.clickCommitPayDay();
-//		orderPage.clickAddDateForAllInvoices(input.get("addDate"));
-//		orderPage.clickContinue();
-//		Thread.sleep(15000);
-//		orderPage.clickSubmit();
-//		Thread.sleep(5000);
-		
-		orderPage.isOrderSuccessMessageDisplayed();
-		Assert.assertTrue(orderPage.isOrderSuccessMessageDisplayed(),
-		        "Order successful!");
+		orderPage.clickCommitPayDay();
+		orderPage.clickAddDateForAllInvoices(input.get("addDate"));
+		orderPage.clickContinue();
+		Thread.sleep(15000);
+		orderPage.clickSubmit();
+		Thread.sleep(5000);
 	}
 
 	@DataProvider
@@ -79,7 +75,7 @@ public class TC06_Order_CreditandCreditProductsTest extends AndroidBase {
 		String basePath = System.getProperty("user.dir") + "//src//test//java//testData//";
 
 		List<HashMap<String, String>> data = getMergedJsonData(basePath + "loginData.json", basePath + "testData.json",
-				basePath + "credit&CreditProduct.json"
+				basePath + "cash&CashProduct.json"
 
 		);
 

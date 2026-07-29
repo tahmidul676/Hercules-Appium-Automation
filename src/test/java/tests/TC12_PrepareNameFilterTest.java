@@ -38,10 +38,7 @@ public class TC12_PrepareNameFilterTest extends AndroidBase {
 		Thread.sleep(5000);
 		orderPage.clickApplyFilter();
 		Thread.sleep(5000);
-		// ADD THIS BLOCK
-//		System.out.println("=== PAGE SOURCE BEFORE SCRAPING ===");
-//		System.out.println(driver.getPageSource());
-//		System.out.println("====================================");
+		
 		// Scrape ALL retailers dynamically ----
 		List<HashMap<String, String>> allRetailers = orderPage.scrapeAllRetailersOnPage();
 

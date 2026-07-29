@@ -1,0 +1,14 @@
+[
+	{
+		"fromDay": "21",
+		"toDay": "22",
+		"reason": "Personal work",
+		"phone": "01790210001",
+		"address": "Dhaka",
+		"delegateName": "John Doe",
+		"delegateDesignation": "Sales Officer",
+		"delegateDepartment": "Sales",
+		"fromDate": "21-Jul-2026",
+		"toDate": "22-Jul-2026"
+	}
+]

@@ -11,7 +11,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-
+import org.openqa.selenium.NoSuchElementException;
 import base.AndroidBase;
 import pages.AttendancePage;
 import pages.HomePage;
@@ -44,7 +44,12 @@ public class TC14_Attendance extends AndroidBase {
 		attendancePage.clickCaptureImage();
 		Thread.sleep(5000);
 		attendancePage.clickPunch();
-		Thread.sleep(5000);
+		
+//		boolean toastShown = attendancePage.isToastMessageShown("Request successfully done", 15);
+//		if (!toastShown) {
+//		    System.out.println("PAGE SOURCE AT FAILURE:\n" + driver.getPageSource());
+//		}
+//		Assert.assertTrue(toastShown, "Expected 'Request successfully done' toast was not displayed");
 	}
 
 	@DataProvider

@@ -13,8 +13,7 @@ import pages.HomePage;
 import pages.LoginPage;
 import pages.OrderPage;
 
-public class TC05_OrderOverDueTest extends AndroidBase {
-
+public class TC30_Order_CreditandBothProductsTest extends AndroidBase{
 	@Test(dataProvider = "getData")
 
 	public void Order(HashMap<String, String> input) throws InterruptedException {
@@ -31,11 +30,11 @@ public class TC05_OrderOverDueTest extends AndroidBase {
 		homePage.clickOrder();
 
 		OrderPage orderPage = new OrderPage(driver);
-		orderPage.enterSearchRetailer(input.get("retailerName"));
+		orderPage.enterSearchRetailer(input.get("cashCreditBothRetailerName"));
 		orderPage.clickMatchedRetailer();
 		Thread.sleep(5000);
-		orderPage.selectCashAndCashProducts();
-		Thread.sleep(5000);
+		orderPage.selectCreditAndBothProducts();
+		// Assertion
 		String actualText = orderPage.getPrepareOrderText();
 		String expectedText = "Prepare Order";
 		Assert.assertEquals(actualText, expectedText, "Prepare Order text mismatch!");
@@ -53,20 +52,24 @@ public class TC05_OrderOverDueTest extends AndroidBase {
 		orderPage.clickConfirm();
 		Thread.sleep(5000);
 		// 3
-		orderPage.clickSearchProduct(input.get("productName2"));
-		orderPage.clickAddProduct();
-		orderPage.enterQuantity(input.get("productQty2"));
-		orderPage.clickConfirm();
+//		orderPage.clickSearchProduct(input.get("productName2"));
+//		orderPage.clickAddProduct();
+//		orderPage.enterQuantity(input.get("productQty2"));
+//		orderPage.clickConfirm();
 
 		orderPage.clickSubmit();
 
 		// Over Due List
-		orderPage.clickCommitPayDay();
-		orderPage.clickAddDateForAllInvoices(input.get("addDate"));
-		orderPage.clickContinue();
-		Thread.sleep(15000);
-		orderPage.clickSubmit();
-		Thread.sleep(5000);
+//		orderPage.clickCommitPayDay();
+//		orderPage.clickAddDateForAllInvoices(input.get("addDate"));
+//		orderPage.clickContinue();
+//		Thread.sleep(15000);
+//		orderPage.clickSubmit();
+//		Thread.sleep(5000);
+		
+		orderPage.isOrderSuccessMessageDisplayed();
+		Assert.assertTrue(orderPage.isOrderSuccessMessageDisplayed(),
+		        "Order successful!");
 	}
 
 	@DataProvider
@@ -75,7 +78,7 @@ public class TC05_OrderOverDueTest extends AndroidBase {
 		String basePath = System.getProperty("user.dir") + "//src//test//java//testData//";
 
 		List<HashMap<String, String>> data = getMergedJsonData(basePath + "loginData.json", basePath + "testData.json",
-				basePath + "cash&CashProduct.json"
+				basePath + "credit&BothProducts.json"
 
 		);
 

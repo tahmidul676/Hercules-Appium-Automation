@@ -24,7 +24,6 @@ public class TC02_InvalidLoginTest extends AndroidBase {
 		loginPage.setuserID(input.get("userID"));
 		loginPage.setuserPin(input.get("password"));
 		loginPage.clickLogin();
-
 		Assert.assertTrue(true);
 
 	}

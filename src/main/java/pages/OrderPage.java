@@ -1,10 +1,15 @@
 package pages;
 
 import java.time.Duration;
+import java.time.LocalDate;
+import java.time.YearMonth;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
+import java.util.Map;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
@@ -14,6 +19,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Pause;
 import org.openqa.selenium.interactions.PointerInput;
 import org.openqa.selenium.interactions.Sequence;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -47,13 +53,15 @@ public class OrderPage extends AndroidActions {
 
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text=\"Credit\"]")
 	private WebElement clickCreditProducts;
+	
+	@AndroidFindBy(xpath = "//android.widget.TextView[@text=\"Both\"]")
+	private WebElement clickBothProducts;
 
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text=\"Prepare Order\"]")
 	private WebElement prepareOrderText;
 	
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text=\"Search\"]")
 	private WebElement searchProductInput;
-
 
 	@AndroidFindBy(xpath = "(//android.view.View[@content-desc=\"Details\"])[1]")
 	private WebElement clickFirstMatchedProduct;
@@ -108,17 +116,24 @@ public class OrderPage extends AndroidActions {
     private WebElement txtDraftSaveSuccessMessage;
 
  
-    // Filter button (instance 13 of android.view.View)
+    // Filter button 
     @AndroidFindBy(uiAutomator = "new UiSelector().className(\"android.view.View\").instance(12)")
     private WebElement btnFilter;
- 
-    // Name input field (first EditText)
+	
+
+ // Filter button 
+    @AndroidFindBy(uiAutomator = "new UiSelector().description(\"Filter\")")
+    private WebElement listBtnFilter;
+    // Name input field
     @AndroidFindBy(uiAutomator = "new UiSelector().className(\"android.widget.EditText\").instance(0)")
     private WebElement inputName;
  
-    // Sub Market dropdown (third EditText)
+    // Sub Market dropdown 
     @AndroidFindBy(uiAutomator = "new UiSelector().className(\"android.widget.EditText\").instance(2)")
     private WebElement dropdownSubMarket;
+    
+    @AndroidFindBy(uiAutomator = "new UiSelector().className(\"android.widget.EditText\").instance(1)")
+    private WebElement listDropdownSubMarket;
  
     // Rampura Submarket 1 option in dropdown
     @AndroidFindBy(uiAutomator = "new UiSelector().text(\"Rampura Submarket 1\")")
@@ -171,11 +186,34 @@ public class OrderPage extends AndroidActions {
     @AndroidFindBy(xpath = "//android.widget.TextView[@text=\"Yes\"]")
    	private WebElement yesOrderBtn;
     
-    @AndroidFindBy(uiAutomator = "new UiSelector().text(\"Your Order Have been Updated Successfully\")")
+    @AndroidFindBy(uiAutomator = "new UiSelector().textContains(\"Your Order Have been Updated Successfully\")")
     private WebElement txtUpdatedSuccessMessage;
+    
+    @AndroidFindBy(uiAutomator = "new UiSelector().className(\"android.widget.EditText\").instance(2)")
+    private WebElement orderIdField;
+	
+    @AndroidFindBy(uiAutomator = "new UiSelector().text(\"Custom\")")
+    private WebElement customDateOption;
+    
+    private static final DateTimeFormatter ISO_FMT = DateTimeFormatter.ISO_LOCAL_DATE; // yyyy-MM-dd
+    private static final DateTimeFormatter DISPLAY_FMT =
+            DateTimeFormatter.ofPattern("EEEE, MMMM d, yyyy", Locale.ENGLISH); // Wednesday, July 1, 2026
+    private static final DateTimeFormatter MONTH_YEAR_FMT =
+            DateTimeFormatter.ofPattern("MMMM yyyy", Locale.ENGLISH); // July 2026
+
+    @FindBy(xpath = "//android.widget.TextView[@text='Ok']")
+    private WebElement okButton;
+    
+    
+//    @AndroidFindBy(uiAutomator = "new UiSelector().text(\"Order Successful!\")")
+//    private WebElement txtOrderSuccessMessage;
+    @AndroidFindBy(uiAutomator = "new UiSelector().textContains(\"Successful\")")
+    private WebElement txtOrderSuccessMessage;
 
 	//-----------------------------------------------------
-    
+    public boolean isOrderSuccessMessageDisplayed() {
+        return txtOrderSuccessMessage.isDisplayed();
+    }
 
 	public void selectCashAndCashProducts() {
 		clickCash.click();
@@ -191,6 +229,16 @@ public class OrderPage extends AndroidActions {
 		clickCredit.click();
 		clickCreditProducts.click();
 	}
+	
+	public void selectCashAndBothProducts() {
+		clickCash.click();
+		clickBothProducts.click();
+	}
+	
+	public void selectCreditAndBothProducts() {
+		clickCredit.click();
+		clickBothProducts.click();
+	}
 
 	public String getPrepareOrderText() {
 		return prepareOrderText.getText();
@@ -200,39 +248,16 @@ public class OrderPage extends AndroidActions {
 		return listOrderText.getText();
 	}
 
-	/*
-	public void enterSearchRetailer(String retailerName) {
-	    // Step 1: Click the "Search" TextView to activate the search input
-	    searchProductInput.click();
 
-	    // Step 2: Wait for the actual EditText input to appear, then type
-	    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-	    WebElement actualSearchInput = wait.until(
-	        ExpectedConditions.elementToBeClickable(
-	            By.xpath("//android.widget.EditText")
-	        		//AppiumBy.androidUIAutomator("new UiSelector().text(\"Search\")")
-	        )
-	    );
-	    
-	    actualSearchInput.clear();
-	    actualSearchInput.sendKeys(retailerName);
-	}
-	
-	*/
 	
 	public void enterSearchRetailer(String retailerName) {
-	    // Step 1: Click the "Search" label to activate the input
 	    searchProductInput.click();
-
-	    // Step 2: Wait explicitly for an EditText to appear (the real input field)
 	    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 	    WebElement actualSearchInput = wait.until(
 	        ExpectedConditions.presenceOfElementLocated(
 	            By.xpath("//android.widget.EditText[not(@text='Search')]")
 	        )
 	    );
-
-	    // Step 3: Tap it to focus, then type
 	    actualSearchInput.click();
 	    actualSearchInput.clear();
 	    actualSearchInput.sendKeys(retailerName);
@@ -244,10 +269,7 @@ public class OrderPage extends AndroidActions {
 
 
 	public void clickSearchProduct(String productName) {
-	    // Click to open search first
 	    clickSearchProduct.click();
-	    
-	    // Re-find EditText fresh after UI settles
 	    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 	    WebElement searchBox = wait.until(
 	        ExpectedConditions.elementToBeClickable(By.xpath("//android.widget.EditText"))
@@ -291,6 +313,7 @@ public class OrderPage extends AndroidActions {
 		Thread.sleep(500);
 	}
 
+	// Scoll and click "Add Date" for all visible invoices
 	public void clickAddDateForAllInvoices(String date) throws InterruptedException {
 		int processedCount = 0;
 		int maxScrollAttempts = 3;
@@ -331,8 +354,6 @@ public class OrderPage extends AndroidActions {
 	
 	//------------------Filter----------------------
 	
-	
-
 	public List<HashMap<String, String>> scrapeAllRetailersOnPage() throws InterruptedException {
 	    List<HashMap<String, String>> allRetailers = new ArrayList<>();
 	    List<String> seenCodes = new ArrayList<>();
@@ -508,8 +529,7 @@ public class OrderPage extends AndroidActions {
 	        return "N/A";
 	    }
 	}
-	
-//---------------------------------------------------
+
 	
 	public boolean isNoDataAvailableDisplayed() {
         return txtNoDataAvailable.isDisplayed();
@@ -527,10 +547,10 @@ public class OrderPage extends AndroidActions {
     public void clickSubMarketDropdown() {
         dropdownSubMarket.click();
     }
- 
-//    public void selectRampuraSubmarket1() {
-//        optionRampuraSubmarket1.click();
-//    }
+    public void clickListSubMarketDropdown() {
+    	listDropdownSubMarket.click();
+    }
+
     public void selectSubMarket(String subMarketName) {
         driver.findElement(
             AppiumBy.androidUIAutomator("new UiSelector().text(\"" + subMarketName + "\")")
@@ -544,7 +564,6 @@ public class OrderPage extends AndroidActions {
     public void clickApplyFilter() {
         btnApplyFilter.click();
     }
-	//------------------------------------------
 
     public boolean enterSearchRetailerBoolean(String retailerName) {
         try {
@@ -555,13 +574,13 @@ public class OrderPage extends AndroidActions {
             searchBox.sendKeys(retailerName);
             System.out.println("Typed retailer name in search box");
 
-            // ✅ Wait for DOM to settle after typing
+            // Wait for DOM to settle after typing
             WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
             wait.until(ExpectedConditions.elementToBeClickable(
                 By.xpath("//android.widget.TextView[contains(@text, '" + retailerName + "')]")
             ));
 
-            // ✅ Re-find fresh list after wait
+            // Re-find fresh list after wait
             List<WebElement> results = driver.findElements(
                 By.xpath("//android.widget.TextView[contains(@text, '" + retailerName + "')]")
             );
@@ -573,7 +592,7 @@ public class OrderPage extends AndroidActions {
                 return false;
             }
 
-            // ✅ Get text BEFORE click, then click
+            // Get text BEFORE click, then click
             String selectedRetailer = results.get(0).getText();
             results.get(0).click();
             System.out.println("✅ Clicked on retailer: " + selectedRetailer);
@@ -585,7 +604,6 @@ public class OrderPage extends AndroidActions {
         }
     }
     
-    // save
     public void clickSaveDraft() {
     	btnSave.click();
     }
@@ -615,7 +633,7 @@ public class OrderPage extends AndroidActions {
     	editOrderText.click();
     }
     
-    
+    // Scoll and click order by orderId
     public void clickOrderByOrderId(String orderId) throws InterruptedException {
         int maxScrollAttempts = 5;
         int scrollAttempts = 0;
@@ -671,11 +689,8 @@ public class OrderPage extends AndroidActions {
     }
     
 
-
-    // ---------- Prepare Order methods ----------
-
     /**
-     * Scrolls down repeatedly until "Update Order" button is visible
+     * Scrolls down repeatedly until "Remarks" button is visible
      * (i.e., reached the end of the Order Items table)
      */
     public void scrollToEndOfOrderItems() throws InterruptedException {
@@ -745,20 +760,7 @@ public class OrderPage extends AndroidActions {
         WebElement qtyInput = driver.findElement(By.xpath("//android.widget.EditText"));
         qtyInput.clear();
         qtyInput.sendKeys(qty);
-
-        // TODO: Add a confirm/tick tap here if the qty edit needs a separate save step
     }
-
-    public void clickUpdateOrder() {
-        updateOrderButton.click();
-    }
-
-//    public boolean isOrderUpdateSuccessful() {
-//        // TODO: Replace with actual success toast/message locator
-//      //  List<WebElement> successMsg = driver.findElements(
-//     //           By.xpath("//android.widget.TextView[contains(@text,'success') or contains(@text,'updated')]"));
-//        return !successMsg.isEmpty();
-//    }
     
     public boolean isUpdatedSuccessMessageDisplayed() {
         return txtUpdatedSuccessMessage.isDisplayed();
@@ -778,23 +780,78 @@ public class OrderPage extends AndroidActions {
         driver.perform(Collections.singletonList(tap));
     }
 
-    public void scrollDown() {
-        // TODO: reuse your existing scrollDown() implementation from AndroidBase if it's there instead
-        int screenHeight = driver.manage().window().getSize().getHeight();
-        int screenWidth = driver.manage().window().getSize().getWidth();
-
-        int startX = screenWidth / 2;
-        int startY = (int) (screenHeight * 0.8);
-        int endY = (int) (screenHeight * 0.2);
-
-        PointerInput finger = new PointerInput(PointerInput.Kind.TOUCH, "finger");
-        Sequence swipe = new Sequence(finger, 1);
-        swipe.addAction(finger.createPointerMove(Duration.ofMillis(0), PointerInput.Origin.viewport(), startX, startY));
-        swipe.addAction(finger.createPointerDown(PointerInput.MouseButton.LEFT.asArg()));
-        swipe.addAction(finger.createPointerMove(Duration.ofMillis(300), PointerInput.Origin.viewport(), startX, endY));
-        swipe.addAction(finger.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));
-
-        driver.perform(Collections.singletonList(swipe));
+    // Update Order
+    public void clickUpdateOrder() {
+        updateOrderButton.click();
     }
+
+    public void clickListFilter() {
+    	listBtnFilter.click();
+    }
+    
+    public void setOrderID(String qty) {
+    	orderIdField.click();
+    	orderIdField.clear();
+    	orderIdField.sendKeys(qty);
+	}
+    
+    // Custom Date Filter
+    
+    public void clickCustomDateFilter(String fromDate, String toDate) {
+        customDateOption.click();
+        selectDate(fromDate);
+        selectDate(toDate);
+        okButton.click();
+    }
+
+    // ---------- Core logic ----------
+
+    private void selectDate(String isoDate) {
+        LocalDate target = LocalDate.parse(isoDate, ISO_FMT);
+        navigateToMonth(target);
+
+        String formatted = target.format(DISPLAY_FMT);
+        By dateLocator = By.xpath(
+            "//android.widget.TextView[@text='" + formatted + "' or @text='Today, " + formatted + "']"
+        );
+        driver.findElement(dateLocator).click();
+    }
+
+    private void navigateToMonth(LocalDate target) {
+        YearMonth targetYearMonth = YearMonth.from(target);
+        String targetMonthYear = target.format(MONTH_YEAR_FMT);
+        int maxSwipes = 60;
+        int attempts = 0;
+
+        while (attempts < maxSwipes) {
+            List<WebElement> headers = driver.findElements(
+                By.xpath("//android.widget.TextView[@text='" + targetMonthYear + "']")
+            );
+            if (!headers.isEmpty()) {
+                return;
+            }
+
+            YearMonth currentVisible = getCurrentVisibleMonth();
+
+        
+        }
+        throw new RuntimeException("Could not scroll to month: " + targetMonthYear);
+    }
+
+    private YearMonth getCurrentVisibleMonth() {
+        List<WebElement> possibleHeaders = driver.findElements(
+            By.xpath("//android.widget.TextView[contains(@text, '20')]")
+        );
+        for (WebElement el : possibleHeaders) {
+            String text = el.getAttribute("text");
+            try {
+                return YearMonth.parse(text, MONTH_YEAR_FMT);
+            } catch (Exception ignored) {
+                // not a month header (likely a day cell), skip
+            }
+        }
+        throw new RuntimeException("Could not find a visible month header to orient from");
+    }
+
     
 }

@@ -1,0 +1,9 @@
+[
+    {
+      "testCaseId": "TC17_01",
+      "description": "Approve full weekly work plan via Select All for a single day",
+      "retailerName": "Nazirpur(BSL)",
+      "dayToSelect": "SAT",
+      "expectedResult": "Approved"
+    }
+  ]

@@ -13,10 +13,11 @@ import pages.HomePage;
 import pages.LoginPage;
 import pages.OrderPage;
 
-public class TC10_RetailerSearchTest extends AndroidBase {
+public class TC09_ProductSearchInvalidTest extends AndroidBase {
+
 	@Test(dataProvider = "getData")
 
-	public void Order(HashMap<String, String> input) throws InterruptedException {
+	public void RetailerSearch(HashMap<String, String> input) throws InterruptedException {
 
 		LoginPage loginPage = new LoginPage(driver);
 		loginPage.setuserID(input.get("userID"));
@@ -32,10 +33,17 @@ public class TC10_RetailerSearchTest extends AndroidBase {
 
 		OrderPage orderPage = new OrderPage(driver);
 		orderPage.enterSearchRetailer(input.get("retailerName"));
+		orderPage.clickMatchedRetailer();
+		Thread.sleep(5000);
+		orderPage.selectCashAndCashProducts();
+		Thread.sleep(5000);
+
+		orderPage.clickSearchProduct(input.get("productNameInvalid"));
+		orderPage.isNoDataAvailableDisplayed();
 		Thread.sleep(5000);
 		
-		boolean result = orderPage.enterSearchRetailerBoolean(input.get("retailerName"));
-		Assert.assertTrue(result, "Retailer selection failed for: " + input.get("retailerName"));
+		Assert.assertTrue(orderPage.isNoDataAvailableDisplayed(), "No Data Available");
+
 	}
 
 	@DataProvider
@@ -43,8 +51,8 @@ public class TC10_RetailerSearchTest extends AndroidBase {
 
 		String basePath = System.getProperty("user.dir") + "//src//test//java//testData//";
 
-		List<HashMap<String, String>> data = getMergedJsonData(basePath + "loginData.json", basePath + "testData.json",
-				basePath + "cash&CashProduct.json"
+		List<HashMap<String, String>> data = getMergedJsonData(basePath + "loginData.json",
+				basePath + "orderTestData.json"
 
 		);
 
@@ -55,5 +63,4 @@ public class TC10_RetailerSearchTest extends AndroidBase {
 
 		return arr;
 	}
-
 }

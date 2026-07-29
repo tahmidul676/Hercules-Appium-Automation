@@ -1,6 +1,8 @@
 package pages;
 
 import java.time.Duration;
+import java.util.List;
+import java.util.NoSuchElementException;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -36,6 +38,10 @@ public class LoginPage extends AndroidActions {
 	@AndroidFindBy(xpath = "//android.widget.Toast")
 	private WebElement invalidErrorToast;
 	
+	private By syncSuccessToast = By.xpath(
+		    "//android.widget.Toast[contains(@text,'All sync Done Successfully')]"
+		);
+	
 	public void setuserID(String userid) {
 
 		userIdField.clear();
@@ -70,4 +76,31 @@ public class LoginPage extends AndroidActions {
 
 	    return msg.getText();
 	}
+	
+	public boolean isSyncSuccessToastDisplayed() {
+	    long endTime = System.currentTimeMillis() + 8000; // 8s max wait
+
+	    while (System.currentTimeMillis() < endTime) {
+	        List<WebElement> toasts = driver.findElements(syncSuccessToast);
+	        if (!toasts.isEmpty()) {
+	            return true; // found in page source = it was displayed, don't re-touch the element
+	        }
+	        try {
+	            Thread.sleep(300);
+	        } catch (InterruptedException e) {
+	            Thread.currentThread().interrupt();
+	        }
+	    }
+	    return false;
+	}
+	    public String getSyncSuccessToastText() {
+	        try {
+	            WebElement toast = driver.findElement(syncSuccessToast);
+	            return toast.getText();
+	        } catch (NoSuchElementException e) {
+	            return null;
+	        }
+	    }
+	
+	
 }
