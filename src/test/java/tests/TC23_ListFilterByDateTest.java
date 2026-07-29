@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 
-import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -13,7 +12,8 @@ import pages.HomePage;
 import pages.LoginPage;
 import pages.OrderPage;
 
-public class TC17_OrderListEditTest  extends AndroidBase{
+public class TC23_ListFilterByDateTest  extends AndroidBase{
+
 	@Test(dataProvider = "getData")
 
 	public void Order(HashMap<String, String> input) throws InterruptedException {
@@ -32,37 +32,12 @@ public class TC17_OrderListEditTest  extends AndroidBase{
 
 		OrderPage orderPage = new OrderPage(driver);
 		orderPage.selectList();
-		orderPage.clickOrderByOrderId(input.get("orderId"));
-		
-		String actualText = orderPage.getOrderListText();
-		String expectedText = "Order Details";
-		Assert.assertEquals(actualText, expectedText, "Order Details text mismatch!");
-		
-		orderPage.editOrder();
-		orderPage.yesOrder();
-		
-		 orderPage.scrollToEndOfOrderItems();
-
-		    orderPage.clickEditIconByProductName(input.get("productName"));
-		    Thread.sleep(500);
-
-		    orderPage.updateQuantity(input.get("newQty"));
-		    Thread.sleep(500);
-		    
-		    orderPage.clickConfirm();
-
-		    orderPage.clickEditIconByProductName(input.get("secondProductName"));
-		    Thread.sleep(500);
-
-		    orderPage.updateQuantity(input.get("secondProductNewQty"));
-		    Thread.sleep(500);
-		    orderPage.clickConfirm();
-		    orderPage.clickUpdateOrder();
-
-		    boolean isUpdated = orderPage.isUpdatedSuccessMessageDisplayed();
-		    Assert.assertTrue(isUpdated, "Order update confirmed");
-		    
-		    orderPage.clickGoHome();
+		orderPage.clickListFilter();
+		Thread.sleep(5000);
+		orderPage.clickCustomDateFilter(input.get("fromDate"), input.get("toDate"));
+		orderPage.clickApplyFilter();
+		Thread.sleep(5000);
+	
     }
 		
 

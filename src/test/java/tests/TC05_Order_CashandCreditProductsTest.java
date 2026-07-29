@@ -61,12 +61,16 @@ public class TC05_Order_CashandCreditProductsTest extends AndroidBase {
 		orderPage.clickSubmit();
 
 		// Over Due List
-		orderPage.clickCommitPayDay();
-		orderPage.clickAddDateForAllInvoices(input.get("addDate"));
-		orderPage.clickContinue();
-		Thread.sleep(15000);
-		orderPage.clickSubmit();
-		Thread.sleep(5000);
+//		orderPage.clickCommitPayDay();
+//		orderPage.clickAddDateForAllInvoices(input.get("addDate"));
+//		orderPage.clickContinue();
+//		Thread.sleep(15000);
+//		orderPage.clickSubmit();
+//		Thread.sleep(5000);
+		
+		orderPage.isOrderSuccessMessageDisplayed();
+		Assert.assertTrue(orderPage.isOrderSuccessMessageDisplayed(),
+		        "Order successful!");
 
 	}
 

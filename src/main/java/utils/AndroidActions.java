@@ -16,6 +16,8 @@ import org.openqa.selenium.interactions.Sequence;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.google.common.collect.ImmutableMap;
+
+import io.appium.java_client.AppiumBy;
 import io.appium.java_client.android.AndroidDriver;
 
 public class AndroidActions extends AppiumUtils {
@@ -69,5 +71,26 @@ public class AndroidActions extends AppiumUtils {
 
 		throw new RuntimeException("Element not found after scrolling");
 	}
-
+	
+	// 
+	
+	public void scrollToTop() {
+        try {
+            driver.findElement(AppiumBy.androidUIAutomator(
+                "new UiScrollable(new UiSelector().scrollable(true))"
+                + ".scrollToBeginning(20)"
+            ));
+        } catch (Exception e) {
+            // fallback: try scrolling to a known top-of-form element instead
+            try {
+                driver.findElement(AppiumBy.androidUIAutomator(
+                    "new UiScrollable(new UiSelector().scrollable(true))"
+                    + ".scrollIntoView(new UiSelector().textContains(\"Tour Type\"))"
+                ));
+            } catch (Exception ex) {
+                System.out.println("scrollToTop fallback also failed: " + ex.getMessage());
+            }
+        }
+    }
+	
 }

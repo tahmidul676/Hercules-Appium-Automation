@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="SSLHercules Suite" verbose="1">
+    <test name="Hercules Tests">
+        <classes>
+         <class name="tests.TC01_LoginTest"/>
+           <class name="tests.TC02_InvalidLoginTest"/>
+           
+            
+        </classes>
+    </test>
+</suite>

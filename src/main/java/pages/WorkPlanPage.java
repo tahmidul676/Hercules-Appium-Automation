@@ -63,7 +63,7 @@ public class WorkPlanPage extends AndroidActions {
 	@AndroidFindBy(xpath = "//android.widget.ScrollView/android.view.View[2]/android.view.View[3]")
 	private WebElement clickTravelModeEvening;
 
-	// Sub-Market set to -> Rampura SubMarket
+	// Sub-Market set to -> SubMarket //Guradhap Bazar // Sreeramkati
 	@AndroidFindBy(xpath = "//android.widget.TextView[@text=\"Sreeramkati\"]")
 	private WebElement clickStarAndEndPoint;
 
@@ -118,7 +118,7 @@ public class WorkPlanPage extends AndroidActions {
 	@AndroidFindBy(xpath = "//android.view.View//android.widget.TextView[@text='Ok']")
 	private WebElement okButton;
 
-	@AndroidFindBy(xpath = "//android.view.View//android.widget.TextView[@text='request successfully done']")
+	@AndroidFindBy(xpath = "//android.view.View//android.widget.TextView[@text='Request successfully done']")
 	private WebElement successMessage;
 
 	@AndroidFindBy(xpath = "//android.view.View//android.widget.TextView[@text='Go Home']")

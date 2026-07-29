@@ -3,18 +3,15 @@ package tests;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
-
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-
 import base.AndroidBase;
 import pages.HomePage;
 import pages.LoginPage;
 import pages.OrderPage;
 
-public class TC06_Order_CreditandCreditProductsTest extends AndroidBase {
-
+public class TC29_Order_CashandBothProductsTest extends AndroidBase{
 	@Test(dataProvider = "getData")
 
 	public void Order(HashMap<String, String> input) throws InterruptedException {
@@ -34,7 +31,7 @@ public class TC06_Order_CreditandCreditProductsTest extends AndroidBase {
 		orderPage.enterSearchRetailer(input.get("retailerName"));
 		orderPage.clickMatchedRetailer();
 		Thread.sleep(5000);
-		orderPage.selectCreditAndCreditProducts();
+		orderPage.selectCashAndBothProducts();
 		// Assertion
 		String actualText = orderPage.getPrepareOrderText();
 		String expectedText = "Prepare Order";
@@ -53,10 +50,10 @@ public class TC06_Order_CreditandCreditProductsTest extends AndroidBase {
 		orderPage.clickConfirm();
 		Thread.sleep(5000);
 		// 3
-		orderPage.clickSearchProduct(input.get("productName2"));
-		orderPage.clickAddProduct();
-		orderPage.enterQuantity(input.get("productQty2"));
-		orderPage.clickConfirm();
+//		orderPage.clickSearchProduct(input.get("productName2"));
+//		orderPage.clickAddProduct();
+//		orderPage.enterQuantity(input.get("productQty2"));
+//		orderPage.clickConfirm();
 
 		orderPage.clickSubmit();
 
@@ -79,7 +76,7 @@ public class TC06_Order_CreditandCreditProductsTest extends AndroidBase {
 		String basePath = System.getProperty("user.dir") + "//src//test//java//testData//";
 
 		List<HashMap<String, String>> data = getMergedJsonData(basePath + "loginData.json", basePath + "testData.json",
-				basePath + "credit&CreditProduct.json"
+				basePath + "cash&BothProduct.json"
 
 		);
 

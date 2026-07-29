@@ -25,8 +25,9 @@ public class TC01_LoginTest extends AndroidBase {
 		HomePage homePage = new HomePage(driver);
 		homePage.clickSyncNow();
 		homePage.clickSyncNow();
-		Thread.sleep(9000);
-
+		
+		 boolean toastShown = loginPage.isSyncSuccessToastDisplayed();
+	        Assert.assertTrue(toastShown, "Expected 'All sync Done Successfully' toast was not displayed");
 	}
 
 	@DataProvider

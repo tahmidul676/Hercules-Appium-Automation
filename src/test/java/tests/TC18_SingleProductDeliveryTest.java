@@ -12,7 +12,7 @@ import pages.DeliveryPage;
 import pages.HomePage;
 import pages.LoginPage;
 
-public class TC06_SingleProductDeliveryTest extends AndroidBase {
+public class TC18_SingleProductDeliveryTest extends AndroidBase {
 
 	@Test(dataProvider = "getData")
 

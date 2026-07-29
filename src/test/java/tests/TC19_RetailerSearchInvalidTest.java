@@ -13,7 +13,7 @@ import pages.HomePage;
 import pages.LoginPage;
 import pages.OrderPage;
 
-public class TC09_RetailerSearchInvalidTest extends AndroidBase {
+public class TC19_RetailerSearchInvalidTest extends AndroidBase {
 
 	@Test(dataProvider = "getData")
 

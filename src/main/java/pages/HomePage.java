@@ -33,11 +33,18 @@ public class HomePage extends AndroidActions {
 	@AndroidFindBy(xpath = "//android.widget.ScrollView/android.view.View[2]/android.view.View[2]/android.view.View")
 	private WebElement clickDeliveryBtn;
 
-	@AndroidFindBy(xpath = "//android.widget.ScrollView/android.view.View[2]/android.view.View[5]/android.view.View")
+	@AndroidFindBy(xpath = "//android.widget.ScrollView/android.view.View[2]/android.view.View[6]/android.view.View")
 	private WebElement clickWorkPlanBtn;
 	
 	@AndroidFindBy(uiAutomator = "new UiSelector().className(\"android.view.View\").instance(17)")
 	private WebElement clickAttendanceBtn;
+	
+	@AndroidFindBy(xpath = "//android.widget.ScrollView/android.view.View[2]/android.view.View[5]/android.view.View")
+	private WebElement clickLeaveBtn;
+	
+	@AndroidFindBy(xpath = "//android.widget.ScrollView/android.view.View[2]/android.view.View[7]/android.view.View")
+	private WebElement clickTourPlanBtn;
+	
 	
 
 	public void clickSyncNow() {
@@ -70,7 +77,17 @@ public class HomePage extends AndroidActions {
     }
 
     public void clickAttendance() {
-        waitForHomePageToLoad(); // Wait inside the method itself
+        waitForHomePageToLoad(); 
         clickAttendanceBtn.click();
     }
+    public void clickTourPlanBtn() {
+        waitForHomePageToLoad(); 
+        clickTourPlanBtn.click();
+    }
+    public void clickLeaveBtn() {
+        waitForHomePageToLoad(); 
+        clickLeaveBtn.click();
+    }
+    
+    
 }

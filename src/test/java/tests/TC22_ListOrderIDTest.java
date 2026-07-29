@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 
-import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -13,11 +12,12 @@ import pages.HomePage;
 import pages.LoginPage;
 import pages.OrderPage;
 
-public class TC08_ProductSearchInvalidTest extends AndroidBase {
-
+public class TC22_ListOrderIDTest extends AndroidBase{
+	
+	
 	@Test(dataProvider = "getData")
 
-	public void RetailerSearch(HashMap<String, String> input) throws InterruptedException {
+	public void Order(HashMap<String, String> input) throws InterruptedException {
 
 		LoginPage loginPage = new LoginPage(driver);
 		loginPage.setuserID(input.get("userID"));
@@ -32,25 +32,24 @@ public class TC08_ProductSearchInvalidTest extends AndroidBase {
 		Thread.sleep(5000);
 
 		OrderPage orderPage = new OrderPage(driver);
-		orderPage.enterSearchRetailer(input.get("retailerName"));
-		orderPage.clickMatchedRetailer();
+		orderPage.selectList();
+		orderPage.clickListFilter();
 		Thread.sleep(5000);
-		orderPage.selectCashAndCashProducts();
+		orderPage.setOrderID(input.get("listFilterOrderId"));
+		orderPage.clickApplyFilter();
+		
 		Thread.sleep(5000);
+	
+    }
+		
 
-		orderPage.clickSearchProduct(input.get("productNameInvalid"));
-		orderPage.isNoDataAvailableDisplayed();
-		Thread.sleep(5000);
-		Assert.assertTrue(orderPage.isNoDataAvailableDisplayed(), "No Data Available");
-
-	}
 
 	@DataProvider
 	public Object[][] getData() throws IOException {
 
 		String basePath = System.getProperty("user.dir") + "//src//test//java//testData//";
 
-		List<HashMap<String, String>> data = getMergedJsonData(basePath + "loginData.json",
+		List<HashMap<String, String>> data = getMergedJsonData(basePath + "loginData.json", basePath + "testData.json",
 				basePath + "orderTestData.json"
 
 		);
